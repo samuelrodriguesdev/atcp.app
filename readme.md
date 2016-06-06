@@ -1,1 +1,1 @@
-
+The Schrödinger equation is the fundamental equation of physics for describing quantum mechanical behavior. It is also often called the Schrödinger wave equation, and is a partial differential equation that describes how the wavefunction of a physical system evolves over time. 
