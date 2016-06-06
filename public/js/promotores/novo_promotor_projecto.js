@@ -215,7 +215,7 @@ $(document).ready(function() {
             if (date1 && date2) {
                 months   = (date2.getFullYear() - date1.getFullYear()) * 12;
 
-                months  -= date1.getMonth();
+                months  -= date1.getMonth()+1;
                 months  += date2.getMonth();
                 
                 months  += date1.getDate() <= 15 ? 1 : 0;

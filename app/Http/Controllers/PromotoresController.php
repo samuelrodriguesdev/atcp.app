@@ -18,6 +18,8 @@ use App\PromotoresContatos;
 
 use App\PromotoresFichaIniciativa;
 
+use App\ProjectoConsultor;
+
 class PromotoresController extends Controller
 {
 	public function tableData()
@@ -105,5 +107,18 @@ class PromotoresController extends Controller
 
 		flash()->success('Registo Actualizado com Sucesso!');
 		return redirect()->to('Promotores/Detalhes/'.$success);
+	}
+
+
+
+	public function ProjectoConsultor(Request $request)
+	{
+		
+		$query = ProjectoConsultor::create($request->all());
+        if (!$query) {
+           flash()->error('Ups, Ocorreu um Erro Tente Novamente Mais Tarde. Se o Problema Persistir, Contacte o Administrador!');
+           return redirect()->back();
+        }
+        flash()->success('Consultor Adicionado com Sucesso!');
 	}
 }

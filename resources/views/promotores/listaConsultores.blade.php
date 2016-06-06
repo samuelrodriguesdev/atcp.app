@@ -6,7 +6,9 @@
     <h4 class="modal-title">Novo Consultor</h4>
 </div>
 <div class="modal-body">
-    <form action="listaConsultores_submit" method="POST" accept-charset="utf-8">
+    <form id="novoConsultorForm" action="{{ url('projecto/post_consultor') }}" method="POST" accept-charset="utf-8">
+        {{ csrf_field() }}
+        <input type="hidden" name="projecto_id" value="{{ $projecto }}">
         <label for="contrato_tipo">Tipo de Contrato</label>
         <div class="radio">
             <label>
@@ -27,7 +29,7 @@
         <div class="row">
             <div class="form-group has-feedback col-md-6 col-xs-6">
                 <label for="data_inicio_servico">Data de Inicio do Contrato</label>
-                <input type="text" name="data_fim_servico" class="form-control date">
+                <input type="text" name="data_inicio_servico" class="form-control date">
             </div>
             <div class="form-group has-feedback col-md-6 col-xs-6">
                 <label for="data_fim_servico">Data de Fim do Contrato</label>
@@ -36,11 +38,11 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="consultoria" id="consultoria">
+                <input type="checkbox" name="consultoria" value="1" id="consultoria">
                 Consultoria
             </label>
             <label>
-                <input type="checkbox" name="formacao" id="formacao">
+                <input type="checkbox" name="formacao" value="1" id="formacao">
                 Formação
             </label>
         </div>
@@ -71,14 +73,21 @@
                 <label for="total_formacao">Total</label>
                 <input type="text" name="total_formacao" id="total_formacao" class="form-control" readonly>
             </div>
-        </div>
-    </form> 
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Fechar</button>
-    <button type="button" class="btn btn-primary btn-flat">Guardar</button>
-</div>
+        </div> 
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Fechar</button>
+        <button id="novoConsultor" type="submit" class="btn btn-primary btn-flat">Guardar</button>
+    </div>
+</form> 
 <script type="text/javascript">
+
+    $('#novoConsultor').click(function(e) {
+        e.preventDefault()
+        var formRequest = $('#'+this.id+'Form').attr('action');
+        $.post( formRequest, $( '#'+this.id+'Form' ).serialize() );
+        location.reload();
+    });
 
     $( '.date' ).datepicker({
         autoclose : true,
@@ -99,7 +108,7 @@
 
     $('#valor_hora_consultoria, #valor_hora_formacao').keyup(function(e) {
         var e = this.value, 
-            h = $(this).closest('.row').find('input:first').val();
+        h = $(this).closest('.row').find('input:first').val();
         $(this).closest('.row').find('input:last').val(h*e);
     });
 

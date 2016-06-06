@@ -51,6 +51,10 @@ class Projectos extends Model
         return $this->belongsToMany('App\ProgramasApoiosDocumentos', 'projecto_documentos', 'projecto_id', 'documento_id');
     }
 
+    public function contratos()
+    {
+        return $this->hasMany('App\ProjectoConsultor', 'projecto_id', 'id');
+    }
     /**
      * [setDeclaracaoAtcpDataAttribute description]
      * @param [type] $value [description]

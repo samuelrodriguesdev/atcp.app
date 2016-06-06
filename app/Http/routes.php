@@ -101,9 +101,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('promotores/data-table/', 'PromotoresController@tableData');
 	Route::post('promotores/update/{promotor}', 'PromotoresController@update');
 
-	Route::get('/projecto/novo_consultor', function() {
-		return View::make('promotores/listaConsultores');
+	Route::get('/projecto/novo_consultor/{projecto}', function($projecto) {
+		return view('promotores/listaConsultores', ['projecto' => $projecto]);
 	});
+
+	Route::post('projecto/post_consultor', 'PromotoresController@ProjectoConsultor');
 
 	// programas routes
 	
