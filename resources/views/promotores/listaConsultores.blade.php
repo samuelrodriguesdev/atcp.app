@@ -12,11 +12,11 @@
         <label for="contrato_tipo">Tipo de Contrato</label>
         <div class="radio">
             <label>
-                <input type="radio" name="contrato_tipo" value="1" checked="checked">
+                <input type="radio" id="criacao" name="contrato_tipo" value="1" checked="checked">
                 Apoio á Criação
             </label>
             <label>
-                <input type="radio" name="contrato_tipo" value="2">
+                <input type="radio" id="consolidacao" name="contrato_tipo" value="2">
                 Apoio á Consolidação
             </label>
         </div>
@@ -36,17 +36,27 @@
                 <input type="text" name="data_fim_servico"  class="form-control date">
             </div>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="consultoria" value="1" id="consultoria">
-                Consultoria
-            </label>
-            <label>
-                <input type="checkbox" name="formacao" value="1" id="formacao">
-                Formação
-            </label>
+        <div class="row" id="apoio_a_criacao">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="elaboracao_candidatura" value="1" id="apoio_criacao">
+                    Elaboração da Candidatura
+                </label>
+            </div>
         </div>
-        <div class="row" id="consultoria_div" style="display:none;">
+        <div class="row" id="apoio_a_consolidacao" style="display:none;">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="consultoria" value="1" id="consultoria">
+                    Consultoria
+                </label>
+                <label>
+                    <input type="checkbox" name="formacao" value="1" id="formacao">
+                    Formação
+                </label>
+            </div>
+        </div>
+        <div class="row hidden_inputs" id="consultoria_div" style="display:none;">
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="numero_horas_consultoria">NºHoras Consultoria</label>
                 <input type="text" name="numero_horas_consultoria" id="numero_horas_consultoria" class="form-control">
@@ -60,7 +70,7 @@
                 <input type="text" name="total_consultoria" id="total_consultoria" class="form-control" readonly>
             </div>
         </div>
-        <div class="row" id="formacao_div" style="display:none;">
+        <div class="row hidden_inputs" id="formacao_div" style="display:none;">
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="numero_horas_formacao">NºHoras Formação</label>
                 <input type="text" name="numero_horas_formacao" id="numero_horas_formacao" class="form-control">
@@ -73,7 +83,17 @@
                 <label for="total_formacao">Total</label>
                 <input type="text" name="total_formacao" id="total_formacao" class="form-control" readonly>
             </div>
-        </div> 
+        </div>
+        <div class="row hidden_inputs" id="apoio_criacao_div" style="display:none;">
+            <div class="form-group has-feedback col-md-8 col-xs-8">
+                <label for="numero_horas_apoio_criacao">% Elaboração da Candidatura</label>
+                <input type="text" name="percentagem_elaboracao_candidatura" id="percentagem_elaboracao_candidatura" class="form-control">
+            </div>
+            <div class="form-group has-feedback col-md-4 col-xs-4">
+                <label for="total_apoio_criacao">Total</label>
+                <input type="text" name="total_elaboracao_candidatura" id="total_elaboracao_candidatura" class="form-control" readonly>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Fechar</button>
@@ -101,15 +121,27 @@
         increaseArea  : '20%' 
     });
 
-    $('#consultoria, #formacao').on('ifToggled', function(e){
+    $('#consultoria, #formacao, #apoio_criacao').on('ifToggled', function(e){
         e.preventDefault();
         $('div#'+this.id+'_div').toggle();
+    });
+
+    $('#criacao, #consolidacao').on('ifToggled', function(e){
+        e.preventDefault();
+        $('.hidden_inputs').hide();
+        $('#consultoria, #formacao, #apoio_criacao').iCheck('uncheck');
+        $('div#apoio_a_'+this.id).toggle();
     });  
 
     $('#valor_hora_consultoria, #valor_hora_formacao').keyup(function(e) {
         var e = this.value, 
         h = $(this).closest('.row').find('input:first').val();
         $(this).closest('.row').find('input:last').val(h*e);
+    });
+
+    $('#percentagem_elaboracao_candidatura').keyup(function(e) {
+        var e = this.value;
+        $(this).closest('.row').find('input:last').val(((e/100)*((419.22)*(2.5))).toFixed(2));
     });
 
     function formatOption (option) {
@@ -136,6 +168,4 @@
         templateResult: formatOption,
         templateSelection: formatOptions
     });
-
-    $
 </script>
