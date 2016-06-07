@@ -7,7 +7,7 @@ $(document).ready(function() {
       	processing: true,
       	serverSide: true,
       	ajax: Url+'/promotores/data-table',
-      	"sDom": '<"top">rt<"bottom"ip><"clear">',
+      	//"sDom": '<"top">rt<"bottom"ip><"clear">',
    	});
    	promotoresTable.on( 'preXhr.dt', function () {
         $('div.overlay').css('visibility', 'visible');

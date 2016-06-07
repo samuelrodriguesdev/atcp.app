@@ -134,4 +134,14 @@ class PromotoresController extends Controller
         }
         flash()->success('Pedido de Pagamento Adicionado com Sucesso!');
 	}
+
+	public function ProjectoConsultorUpdate(Request $request, ProjectoConsultor $contrato)
+	{
+		$query = $contrato->update($request->all());
+        if (!$query) {
+           flash()->error('Ups, Ocorreu um Erro Tente Novamente Mais Tarde. Se o Problema Persistir, Contacte o Administrador!');
+           return redirect()->back();
+        }
+        flash()->success('Consultor Actualizado com Sucesso!');
+	}
 }

@@ -52,8 +52,9 @@
     $('#novoPP_').click(function(e) {
         e.preventDefault()
         var formRequest = $('#'+this.id+'Form').attr('action');
-        $.post( formRequest, $( '#'+this.id+'Form' ).serialize() );
-        location.reload();
+        $.post( formRequest, $( '#'+this.id+'Form' ).serialize() ).always(function(){
+            location.reload();
+        });
     });
 
     $( '.date' ).datepicker({

@@ -24,12 +24,16 @@
                         {{ $contrato->consultor->nome }}
                     </a>
                 </h4>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-flat btn-primary btn-xs">
-                        <i class="fa fa-info-circle">
-                        </i>
-                    </button>
-                </div>   
+                 <div class="btn-group pull-right">
+                        <a data-toggle="modal" href="{{ url('projecto/projecto_consultor_detalhes/'.$contrato->id) }}" data-target="#detalhesContrato" class="btn btn-flat bg-primary btn-sm">
+                            <i class="fa fa-pencil">
+                            </i>
+                        </a> 
+                        <a class="btn btn-flat btn-danger btn-sm">
+                            <i class="fa fa-trash">
+                            </i>
+                        </a>
+                </div>  
             </div>
             <div id="collapse{{ $contrato->id }}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                 <div class="box-body">
@@ -85,6 +89,12 @@
 </div>
 </div>
 <div id="myModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<div id="detalhesContrato" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
         </div>
