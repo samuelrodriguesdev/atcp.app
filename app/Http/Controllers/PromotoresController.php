@@ -20,6 +20,8 @@ use App\PromotoresFichaIniciativa;
 
 use App\ProjectoConsultor;
 
+use App\ProjectoPP;
+
 class PromotoresController extends Controller
 {
 	public function tableData()
@@ -120,5 +122,16 @@ class PromotoresController extends Controller
            return redirect()->back();
         }
         flash()->success('Consultor Adicionado com Sucesso!');
+	}
+
+	public function ProjectoPP(Request $request)
+	{
+		
+		$query = ProjectoPP::create($request->all());
+        if (!$query) {
+           flash()->error('Ups, Ocorreu um Erro Tente Novamente Mais Tarde. Se o Problema Persistir, Contacte o Administrador!');
+           return redirect()->back();
+        }
+        flash()->success('Pedido de Pagamento Adicionado com Sucesso!');
 	}
 }

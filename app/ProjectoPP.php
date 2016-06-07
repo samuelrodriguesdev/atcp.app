@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class ProjectoPP extends Model
 {
     /**
@@ -19,7 +21,7 @@ class ProjectoPP extends Model
      * @var array
      */
     protected $fillable = [
-        'projecto_id', 'valor_pedido_pagamento', 'valor_pago_pagamento', 'data_pedido_pagamento', 'estado_pedido_pagamento', 'observacoes'
+        'projecto_id', 'valor_pedido_pagamento', 'valor_pago_pagamento', 'data_pedido_pagamento', 'data_recebimento_pagamento', 'estado_pedido_pagamento', 'observacoes'
     ];
 
     /**
@@ -29,5 +31,31 @@ class ProjectoPP extends Model
     public function projecto() 
     {
     	return $this->belongsTo('App\Projectos', 'projecto_id', 'id');
+    }
+
+     /**
+     * [setDataInicioServicoAttribute description]
+     * @param [type] $value [description]
+     */
+    public function setDataPedidoPagamentoAttribute($value)
+    {
+        $this->attributes['data_pedido_pagamento'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
+    }
+    public function getDataPedidoPagamentoAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+
+      /**
+     * [setDataInicioServicoAttribute description]
+     * @param [type] $value [description]
+     */
+    public function setDataRecebimentoPagamentoAttribute($value)
+    {
+        $this->attributes['data_recebimento_pagamento'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
+    }
+    public function getDataRecebimentoPagamentoAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
     }
 }

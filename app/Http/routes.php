@@ -109,8 +109,12 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('promotores/novoPedidoPagamento', ['projecto' => $projecto]);
 	});
 
-	Route::post('projecto/post_consultor', 'PromotoresController@ProjectoConsultor');
+	Route::get('/projecto/pedido_pagamento_detalhes/{ProjectoPP}', function($ProjectoPP) {
+		return view('promotores/detalhesPedidoPagamento', compact('ProjectoPP'));
+	});
 
+	Route::post('projecto/post_consultor', 'PromotoresController@ProjectoConsultor');
+	Route::post('projecto/post_pedido_pagamento', 'PromotoresController@ProjectoPP');
 	// programas routes
 	
 	Route::get('/Programas/Novo-Programa', function() {

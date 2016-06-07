@@ -3,23 +3,16 @@
 </style>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">Novo Pedido</h4>
+    <h4 class="modal-title">Detalhes Pedido</h4>
 </div>
 <div class="modal-body">
     <form id="novoPP_Form" action="{{ url('projecto/post_pedido_pagamento') }}" method="POST" accept-charset="utf-8" data-toggle="validator">
         {{ csrf_field() }}
-        <input type="hidden" name="projecto_id" value="{{ $projecto }}">
         <div class="row">
-            <div class="form-group has-feedback col-md-6">
+            <div class="form-group has-feedback col-md-7">
                 <label for="data_pedido_pagamento">Data P.P</label>
                 <input type="text" name="data_pedido_pagamento" class="form-control date" required>
             </div>
-            <div class="form-group has-feedback col-md-6">
-                <label for="data_recebimento_pagamento">Data Recebimento P.P</label>
-                <input type="text" name="data_recebimento_pagamento" class="form-control date" required>
-            </div>
-        </div>
-        <div class="row">
              <div class="form-group has-feedback col-md-5">
                 <label for="valor_pedido_pagamento">Valor P.P</label>
                 <input type="text" name="valor_pedido_pagamento" id="valor_pedido_pagamento" class="form-control" required>

@@ -21,7 +21,7 @@ class ProjectoConsultor extends Model
      * @var array
      */
     protected $fillable = [
-        'projecto_id', 'consultor_id', 'contrato_tipo', 'consultoria', 'valor_hora_consultoria', 'numero_horas_consultoria', 'total_consultoria', 'formacao', 'valor_hora_formacao', 'numero_horas_formacao', 'total_formacao', 'data_inicio_servico', 'data_fim_servico'
+        'projecto_id', 'consultor_id', 'contrato_tipo', 'consultoria', 'valor_hora_consultoria', 'numero_horas_consultoria', 'total_consultoria', 'formacao', 'valor_hora_formacao', 'numero_horas_formacao', 'total_formacao', 'data_inicio_servico', 'data_fim_servico', 'elaboracao_canditatura', 'percentagem_elaboracao_candidatura', 'total_elaboracao_candidatura'
     ];
 
     /**
