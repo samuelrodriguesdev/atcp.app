@@ -90,11 +90,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    
-    $( '.date' ).datepicker({
-        autoclose : true,
-        language : "pt",
-        format: "dd-mm-yyyy"
-    });
-</script>

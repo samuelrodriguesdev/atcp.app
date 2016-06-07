@@ -105,6 +105,10 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('promotores/listaConsultores', ['projecto' => $projecto]);
 	});
 
+	Route::get('/projecto/novo_pedido_pagamento/{projecto}', function($projecto) {
+		return view('promotores/novoPedidoPagamento', ['projecto' => $projecto]);
+	});
+
 	Route::post('projecto/post_consultor', 'PromotoresController@ProjectoConsultor');
 
 	// programas routes

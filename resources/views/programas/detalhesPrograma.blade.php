@@ -1,6 +1,6 @@
 @extends('promotores.promotores')
 @section('promotores-content')
-<div class="col-md-9 col-lg-9">
+<div class="col-xs-9 col-md-9 col-lg-9">
     <div class="box box-success" >
         <div class="box-header with-border">
             <h3 class="box-title">Detalhes Programa </h3>
@@ -14,7 +14,7 @@
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="row">
-                    <div class="form-group has-feedback col-md-6">
+                    <div class="form-group has-feedback col-md-12 col-lg-6">
                         <label for="ias_valor_1">Apoio á Criação</label>
                         <div class="input-group">
                             <span class="input-group-addon remove">
@@ -27,7 +27,7 @@
                         </div>
                         <div class="help-block with-errors"></div>
                     </div>
-                    <div class="form-group has-feedback col-md-6">
+                    <div class="form-group has-feedback col-md-12 col-lg-6">
                         <label for="valor_maximo_elegivel_2">Apoio á Consolidação</label>
                         <div class="input-group">
                             <span class="input-group-addon remove">

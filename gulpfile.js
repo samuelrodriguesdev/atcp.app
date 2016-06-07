@@ -11,10 +11,10 @@ var elixir = require('laravel-elixir');
  |
  */
 
+/*
 elixir(function(mix) {
     mix.styles([
         "theme/bootstrap/css/bootstrap.min.css",
-        "theme/plugins/font-awesome-4.5.0/css/font-awesome.min.css",
         "theme/plugins/ionicons-2.0.1/css/ionicons.min.css",
         "theme/plugins/select2/select2.min.css",
         "theme/plugins/iCheck/flat/green.css",
@@ -22,5 +22,26 @@ elixir(function(mix) {
         "theme/plugins/datatables/dataTables.bootstrap.css",
         "theme/dist/css/AdminLTE.min.css",
         "theme/dist/css/skins/skin-green.min.css"
-    ]," public/compile/css/output.css", "public/");
+    ]," public/compiled/css/app.css", "public/");
 });
+*/
+
+elixir(function(mix) {
+    mix.scripts([
+        "theme/plugins/jQuery/jQuery-2.1.4.min.js",
+        "theme/plugins/jQueryUI/jquery-ui.min.js",
+        "theme/bootstrap/js/bootstrap.min.js",
+        "theme/plugins/select2/select2.full.min.js",
+        "theme/plugins/datepicker/bootstrap-datepicker.js",
+        "theme/plugins/datepicker/locales/bootstrap-datepicker.pt.js",
+        "theme/plugins/slimScroll/jquery.slimscroll.min.js",
+        "theme/plugins/fastclick/fastclick.js",
+        "theme/plugins/bootstrap-validator/validator.min.js",
+        "theme/plugins/iCheck/icheck.min.js",
+        "theme/plugins/datatables/jquery.dataTables.js",
+        "theme/plugins/datatables/dataTables.bootstrap.min.js",
+        "theme/dist/js/app.min.js"
+    ]," public/compiled/js/app.js", "public/");
+});
+
+

@@ -55,6 +55,12 @@ class Projectos extends Model
     {
         return $this->hasMany('App\ProjectoConsultor', 'projecto_id', 'id');
     }
+
+    public function pedidos_pagamento()
+    {
+        return $this->hasMany('App\ProjectoPP', 'projecto_id', 'id');
+    }
+
     /**
      * [setDeclaracaoAtcpDataAttribute description]
      * @param [type] $value [description]

@@ -12,7 +12,7 @@
 </section>
 <section class="content">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4 col-lg-3">
             <a href="{{ URL::to('Promotores/Novo-Promotor') }}" class="btn btn-flat bg-green btn-block margin-bottom sub_link">Novo Promotor/Projeto</a>
             <div class="box box-success">
                 <div class="box-body no-padding">

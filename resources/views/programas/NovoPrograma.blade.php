@@ -14,7 +14,7 @@
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="row">
-                    <div class="form-group has-feedback col-md-6">
+                    <div class="form-group has-feedback col-md-12 col-lg-6">
                         <label for="ias_valor_1">Apoio á Criação</label>
                         <div class="input-group">
                             <span class="input-group-addon remove">
@@ -25,7 +25,7 @@
                             <input type="text" class="form-control" name="apoio_criacao_valor_maximo" id="valor_maximo_elegivel_1" readonly>
                         </div>
                     </div>
-                    <div class="form-group has-feedback col-md-6">
+                    <div class="form-group has-feedback col-md-12 col-lg-6">
                         <label for="valor_maximo_elegivel_2">Apoio á Consolidação</label>
                         <div class="input-group">
                             <span class="input-group-addon remove">
