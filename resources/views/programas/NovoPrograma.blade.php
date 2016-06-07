@@ -1,6 +1,6 @@
 @extends('promotores.promotores')
 @section('promotores-content')
-<div class="col-md-8 col-lg-7">
+<div class="col-md-8 col-lg-9">
     <div class="box box-success" >
         <div class="box-header with-border">
             <h3 class="box-title">Novo Programa </h3>

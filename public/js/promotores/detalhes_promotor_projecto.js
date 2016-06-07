@@ -184,7 +184,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.remove_field', function(e) {
-        event.preventDefault();
+        e.preventDefault();
         var id = this.id;
         $(this).closest('div.div'+id).remove();
     });

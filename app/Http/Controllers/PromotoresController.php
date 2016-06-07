@@ -99,7 +99,7 @@ class PromotoresController extends Controller
 
 			$promotor->ficha_iniciativa->update( $request->all() );
 
-			$promotor->projecto->tecnicos()->sync($request->input('tecnico_id'));
+			$promotor->projecto->tecnicos()->sync($request->input('tecnico_id') ? $request->input('tecnico_id') : []);
 
 			return $promotor->id;
 
