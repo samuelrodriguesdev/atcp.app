@@ -1,6 +1,6 @@
 <div class="form-group has-feedback">
     <label for="area_intervencao">*Área de intervenção </label>
-    <textarea name="area_intervencao" class="form-control" rows="3" required="required">{{ $promotor->ficha_iniciativa->area_intervencao }}</textarea>
+    <textarea name="area_intervencao" class="form-control" rows="3" >{{ $promotor->ficha_iniciativa->area_intervencao }}</textarea>
 </div>
 <div class="form-group has-feedback">
     <label for="pontos_fortes">*Pontos fortes do seu plano de negócio (Factores de inovação e/ou diferenciação)</label>
@@ -82,5 +82,5 @@
 </div>
 <div class="form-group has-feedback">
     <label for="caracteristicas_promotor">Características pessoais e profissionais na sua pessoa que considera relevantes para o sucesso do seu projecto?</label>
-    <textarea name="caracteristicas_promotor" class="form-control" rows="3" required="required">{{ $promotor->ficha_iniciativa->caracteristicas_promotor }}</textarea>
+    <textarea name="caracteristicas_promotor" class="form-control" rows="3" >{{ $promotor->ficha_iniciativa->caracteristicas_promotor }}</textarea>
 </div>
