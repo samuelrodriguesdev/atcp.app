@@ -8,7 +8,7 @@
 <div class="modal-body">
     <form id="updateConsultorForm" action="{{ url('projecto/update_consultor/'.$contrato->id) }}" method="POST" accept-charset="utf-8">
         {{ csrf_field() }}
-        <label for="contrato_tipo">Tipo de Contrato</label>
+        <label for="contrato_tipo">Tipo de Apoio</label>
         <div class="radio">
             <label>
                 <input type="radio" id="criacao" name="contrato_tipo" value="1" {{ $contrato->contrato_tipo ==1 ? 'checked' : '' }} >
@@ -28,11 +28,11 @@
 
         <div class="row">
             <div class="form-group has-feedback col-md-6 col-xs-6">
-                <label for="data_inicio_servico">Data de Inicio do Contrato</label>
+                <label for="data_inicio_servico">Data de Inicio do Apoio</label>
                 <input type="text" name="data_inicio_servico" class="form-control date" value="{{$contrato->data_inicio_servico }}">
             </div>
             <div class="form-group has-feedback col-md-6 col-xs-6">
-                <label for="data_fim_servico">Data de Fim do Contrato</label>
+                <label for="data_fim_servico">Data de Fim do Apoio</label>
                 <input type="text" name="data_fim_servico"  class="form-control date" value="{{$contrato->data_fim_servico }}">
             </div>
         </div>
@@ -138,7 +138,7 @@
     $('#valor_hora_consultoria, #valor_hora_formacao').keyup(function(e) {
         var e = this.value, 
         h = $(this).closest('.row').find('input:first').val();
-        $(this).closest('.row').find('input:last').val(h*e);
+        $(this).closest('.row').find('input:last').val((h*e).toFixed(2));
     });
 
     $('#percentagem_elaboracao_candidatura').keyup(function(e) {

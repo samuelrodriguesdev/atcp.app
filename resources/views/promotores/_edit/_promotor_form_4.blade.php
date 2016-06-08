@@ -56,9 +56,9 @@
                         <div class="form-group has-feedback col-md-7">
                             <label for="">Estado</label>
                             <select class="form-control" required="required" style="width:100%;" disabled>
-                                <option value="1">Não Liquidado</option>
-                                <option value="2">Liquidado</option>
-                                <option value="3">Liquidado Parcialmente</option>
+                                <option value="1" {{ $pp->estado_pedido_pagamento == 1 ? 'selected' : '' }}>Não Liquidado</option>
+                                <option value="2" {{ $pp->estado_pedido_pagamento == 2 ? 'selected' : '' }}>Liquidado</option>
+                                <option value="3" {{ $pp->estado_pedido_pagamento == 3 ? 'selected' : '' }}>Liquidado Parcialmente</option>
                             </select>
                         </div>
                         @if($pp->estado_pedido_pagamento==3)

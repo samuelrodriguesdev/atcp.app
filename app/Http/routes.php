@@ -113,13 +113,14 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('promotores/detalhesConsultorProjecto', compact('contrato'));
 	});
 
-	Route::get('/projecto/pedido_pagamento_detalhes/{ProjectoPP}', function($ProjectoPP) {
-		return view('promotores/detalhesPedidoPagamento', compact('ProjectoPP'));
+	Route::get('/projecto/pedido_pagamento_detalhes/{pp}', function(App\ProjectoPP	 $pp) {
+		return view('promotores/detalhesPedidoPagamento', compact('pp'));
 	});
 
 	Route::post('projecto/post_consultor', 'PromotoresController@ProjectoConsultor');
 	Route::post('projecto/update_consultor/{contrato}', 'PromotoresController@ProjectoConsultorUpdate');
 	Route::post('projecto/post_pedido_pagamento', 'PromotoresController@ProjectoPP');
+	Route::post('projecto/update_pedido_pagamento{pp}', 'PromotoresController@ProjectoPPUpdate');
 	// programas routes
 	
 	Route::get('/Programas/Novo-Programa', function() {

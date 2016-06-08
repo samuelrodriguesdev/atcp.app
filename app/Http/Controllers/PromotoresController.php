@@ -144,4 +144,14 @@ class PromotoresController extends Controller
         }
         flash()->success('Consultor Actualizado com Sucesso!');
 	}
+
+	public function ProjectoPPUpdate(Request $request, ProjectoPP $pp)
+	{
+		$query = $pp->update($request->all());
+        if (!$query) {
+           flash()->error('Ups, Ocorreu um Erro Tente Novamente Mais Tarde. Se o Problema Persistir, Contacte o Administrador!');
+           return redirect()->back();
+        }
+        flash()->success('P.P Actualizado com Sucesso!');
+	}
 }
