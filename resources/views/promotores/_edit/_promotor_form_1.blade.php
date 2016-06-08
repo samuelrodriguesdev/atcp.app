@@ -51,8 +51,8 @@
     @include('promotores._edit._promotor_form_1_4')
 </div>
 </div><!-- /.box-body -->
-<!-- /.box -->
+<!-- /.box -->    
 
 <div class="box-footer">
     <input class="btn bg-green btn-flat pull-right" type="submit" value="Guardar" />
-</div>
+</div> 
