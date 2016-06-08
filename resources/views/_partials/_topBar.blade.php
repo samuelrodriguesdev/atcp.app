@@ -53,10 +53,10 @@
                   </li>
                   <li class="user-footer">
                      <div class="pull-left">
-                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                        <a href="#" class="btn btn-default btn-flat perfil">Perfil</a>
                      </div>
                      <div class="pull-right">
-                        <a href="{{ url('logout') }}" class="btn btn-default btn-flat">Terminar Sessão</a>
+                        <a href="{{ url('logout') }}" class="btn btn-default btn-flat logout">Terminar Sessão</a>
                      </div>
                   </li>
                </ul>

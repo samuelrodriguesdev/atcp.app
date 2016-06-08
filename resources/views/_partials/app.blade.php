@@ -54,6 +54,10 @@
     'url'   : '{{ url('') }}',
     'asset' : '{{ asset('') }}'
   };
+
+  $('.logout, .perfil').click(function() {
+    window.location.href = this.href;
+  });
   </script>
   <!-- Scripts Section -->
   @yield('javascript')
