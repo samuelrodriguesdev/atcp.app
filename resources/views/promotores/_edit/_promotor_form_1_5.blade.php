@@ -39,7 +39,7 @@
     <textarea name="recursos_financeiros" class="form-control" rows="3">{{ $promotor->ficha_iniciativa->recursos_financeiros }}</textarea>
 </div>
 <div class="row">
-    <div class="form-group has-feedback col-md-3 col-sm-6">
+    <div class="form-group has-feedback col-md-6 col-sm-6">
         <label for="Nome">Elaboração da Candidatura</label>
         <div class="input-group">
             <span class="input-group-addon">
@@ -49,7 +49,7 @@
             <div class="help-block with-errors"></div>
         </div>
     </div>
-    <div class="form-group has-feedback col-md-3 col-sm-6">
+    <div class="form-group has-feedback col-md-6 col-sm-6">
         <label for="Nome">Capital Próprio</label>
         <div class="input-group">
             <span class="input-group-addon">
@@ -59,7 +59,7 @@
             <div class="help-block with-errors"></div>
         </div>
     </div>
-    <div class="form-group has-feedback col-md-3 col-sm-6">
+    <div class="form-group has-feedback col-md-6 col-sm-6">
         <label for="micro_invest">Microinvest ou Invest+.</label>
         <div class="input-group">
             <span class="input-group-addon">
@@ -69,7 +69,7 @@
             <div class="help-block with-errors"></div>
         </div>
     </div>
-    <div class="form-group has-feedback col-md-3 col-sm-6">
+    <div class="form-group has-feedback col-md-6 col-sm-6">
         <label for="antecipacao_subsidio">Antecipação do subsidio</label>
         <div class="input-group">
             <span class="input-group-addon">

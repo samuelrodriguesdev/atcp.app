@@ -16,11 +16,11 @@
     <label for="negocio_proprio">3.2 Pretende vir a criar o seu próprio negócio/emprego?</label>
     <div class="radio">
         <label>
-            <input type="radio" name="intencao_negocio_proprio" value="1" {{ $promotor->ficha_iniciativa->negocio_proprio == 0 && $promotor->ficha_iniciativa->intencao_negocio_proprio == 1 ? 'checked' : 'disabled' }} >
+            <input type="radio" name="intencao_negocio_proprio" value="1" {{ $promotor->ficha_iniciativa->negocio_proprio == 0 && $promotor->ficha_iniciativa->intencao_negocio_proprio == 1 ? 'checked' : '' }} >
             Sim
         </label>
         <label>
-            <input type="radio" name="intencao_negocio_proprio" value="0" {{ $promotor->ficha_iniciativa->negocio_proprio == 0 && $promotor->ficha_iniciativa->intencao_negocio_proprio == 0 ? 'checked' : 'disabled' }} >
+            <input type="radio" name="intencao_negocio_proprio" value="0" {{ $promotor->ficha_iniciativa->negocio_proprio == 0 && $promotor->ficha_iniciativa->intencao_negocio_proprio == 0 ? 'checked' : '' }} >
             Não
         </label>
     </div>
