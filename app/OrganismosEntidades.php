@@ -39,4 +39,9 @@ class OrganismosEntidades extends Model
     {
         return $this->hasMany('App\Tecnicos');
     }
+
+    public function centro_emprego() 
+    {
+        return $this->hasMany('App\Projectos', 'centro_emprego_id', 'id');
+    }
 }

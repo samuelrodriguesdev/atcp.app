@@ -37,6 +37,11 @@ class Consultores extends Model
         return $this->hasMany('App\ProjectoConsultores', 'consultor_id', 'id');
     }
 
+    public function angariadores() 
+    {
+        return $this->hasMany('App\Projectos', 'angariador_id', 'id');
+    }
+
     public function setCcValidadeAttribute($value)
     {
         $this->attributes['cc_validade'] = Carbon::createFromFormat('m-d-Y', $value)->toDateString();

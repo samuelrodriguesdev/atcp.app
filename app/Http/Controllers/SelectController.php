@@ -16,6 +16,10 @@ use DB;
 
 use App\ProgramasApoiosDocumentos;
 
+use App\Consultores;
+
+use App\OrganismosEntidades;
+
 class SelectController extends Controller
 {
     public function tecnicos(Request $request)
@@ -215,6 +219,68 @@ class SelectController extends Controller
                             ->get([ DB::raw('consultores.id'), DB::raw('nome as consultor'), DB::raw('count(projecto_consultores.consultor_id) as total')]);
 
             $count = DB::table('consultores')->count();
+            $endCount = $offset + $resultCount;
+            $morePages = $endCount > $count;
+
+            $results = [
+                "results" => $consultores,
+                "pagination" => [
+                    "more" => $morePages
+                ],
+            ];
+
+            return response()->json($results);
+        }
+    }
+
+    public function lista_consultores(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $page = $request->input('page');
+            $resultCount = 25;
+
+            $offset = ($page - 1) * $resultCount;
+
+            $consultores = DB::table('consultores')
+                            ->where('nome', 'LIKE',  '%' . $request->input("term"). '%')
+                            ->orderBy('nome')
+                            ->skip($offset)
+                            ->take($resultCount)
+                            ->get([ DB::raw('id'), DB::raw('nome as text') ]);
+
+            $count = DB::table('consultores')->count();
+            $endCount = $offset + $resultCount;
+            $morePages = $endCount > $count;
+
+            $results = [
+                "results" => $consultores,
+                "pagination" => [
+                    "more" => $morePages
+                ],
+            ];
+
+            return response()->json($results);
+        }
+    }
+
+    public function lista_organismos(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $page = $request->input('page');
+            $resultCount = 25;
+
+            $offset = ($page - 1) * $resultCount;
+
+            $consultores = DB::table('organismos_entidades')
+                            ->where('nome', 'LIKE',  '%' . $request->input("term"). '%')
+                            ->orderBy('nome')
+                            ->skip($offset)
+                            ->take($resultCount)
+                            ->get([ DB::raw('id'), DB::raw('nome as text') ]);
+
+            $count = DB::table('organismos_entidades')->count();
             $endCount = $offset + $resultCount;
             $morePages = $endCount > $count;
 

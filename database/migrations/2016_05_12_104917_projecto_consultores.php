@@ -25,6 +25,9 @@ class ProjectoConsultores extends Migration
             $table->double('valor_hora_formacao');
             $table->smallInteger('numero_horas_formacao');
             $table->double('total_formacao');
+            $table->smallInteger('elaboracao_candidatura');
+            $table->smallInteger('percentagem_elaboracao_candidatura');
+            $table->double('total_elaboracao_candidatura');
             $table->date('data_inicio_servico');
             $table->date('data_fim_servico');
             $table->timestamps();

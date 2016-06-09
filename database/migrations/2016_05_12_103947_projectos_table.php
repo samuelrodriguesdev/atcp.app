@@ -16,7 +16,9 @@ class ProjectosTable extends Migration
             $table->increments('id');
             $table->integer('promotor_id')->unsigned();
             $table->integer('programa_id')->unsigned();
-            $table->smallInteger('apoio_criacao')->unsigned();            
+            $table->integer('centro_emprego_id')->unsigned();
+            $table->integer('angariador_id')->unsigned();
+            $table->smallInteger('apoio_criacao')->unsigned();                       
             $table->smallInteger('apoio_criacao_estado');
             $table->smallInteger('apoio_consolidacao')->unsigned();            
             $table->smallInteger('apoio_consolidacao_estado');
@@ -39,7 +41,13 @@ class ProjectosTable extends Migration
                   ->on('promotores');
             $table->foreign('programa_id')
                   ->references('id')
-                  ->on('programas');   
+                  ->on('programas'); 
+             $table->foreign('centro_emprego_id')
+                  ->references('id')
+                  ->on('organismos_entidades');
+            $table->foreign('angariador_id')
+                  ->references('id')
+                  ->on('consultores');      
         });
     }
 

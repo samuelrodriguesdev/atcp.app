@@ -142,12 +142,19 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/hab_literarias/', function() {
 		return DB::table('hab_literarias')->select('*')->get();
 	});
+
 	Route::get('select/tecnicos', 'SelectController@tecnicos');
 	Route::get('select/programas', 'SelectController@programas');
 	Route::get('select/apoios', 'SelectController@apoios_tecnicos');
 	Route::get('select/estado', 'SelectController@apoio_estado');
 	Route::get('select/programa_documentos', 'SelectController@programa_documentos');
 	Route::get('select/consultores_projecto', 'SelectController@lista_consultores_projecto');
-});
+	Route::get('select/lista_organismos', 'SelectController@lista_organismos');
+	Route::get('select/lista_consultores', 'SelectController@lista_consultores');
+
+
+	Route::get('estatistica/grafico1', 'EstatisticaController@total_por_mes_ano');
 	
+});
+
 

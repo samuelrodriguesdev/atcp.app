@@ -1,6 +1,6 @@
 @extends('promotores.promotores')
 @section('promotores-content')
-<div class="col-md-6 col-lg-9">
+<div class="col-md-8 col-lg-9">
     <form method="POST" action="{{ URL('promotores/update/'.$promotor->id) }}" accept-charset="UTF-8" id="myForm">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs" id="myTabs">

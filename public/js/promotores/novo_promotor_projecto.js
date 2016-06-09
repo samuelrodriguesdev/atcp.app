@@ -66,6 +66,37 @@ $(document).ready(function() {
         templateSelection: formatOptions
     });
 
+    $( '#angariador_id' ).select2({
+        
+        ajax: {
+            url: config.url+'/select/lista_consultores',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    term : params.term || '',
+                    page : params.page || 1
+                }
+            },
+            cache: true
+        },
+    });
+
+    $( '#centro_emprego_id' ).select2({
+        
+        ajax: {
+            url: config.url+'/select/lista_organismos',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    term : params.term || '',
+                    page : params.page || 1
+                }
+            },
+            cache: true
+        },
+    });
     $( '#programa_id' ).select2({
         minimumResultsForSearch: Infinity,
         ajax: {

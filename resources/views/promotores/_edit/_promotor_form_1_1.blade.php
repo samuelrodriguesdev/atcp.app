@@ -13,6 +13,22 @@
     </div>
 </div>
 <div class="row">
+    <div class="form-group has-feedback col-md-6">
+    <label for="angariador_id">Angariador</label>
+        <select name="angariador_id" id="angariador_id" class="form-control" style="width:100%;" required>
+        <option value="{{ $promotor->projecto->angariadores->id }}">{{ $promotor->projecto->angariadores->nome }}</option>
+        </select>
+        <div class="help-block with-errors"></div>
+    </div>
+    <div class="form-group has-feedback col-md-6">
+        <label for="centro_emprego_id">Centro de Emprego</label>
+        <select name="centro_emprego_id" id="centro_emprego_id" class="form-control" style="width:100%;" required>
+        <option value="{{ $promotor->projecto->centro_emprego->id }}">{{ $promotor->projecto->centro_emprego->nome }}</option>
+        </select>
+        <div class="help-block with-errors"></div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-6">
         <label for="tecnico_responsavel_1">Técnico Responsável</label>
         <div class="input-group">

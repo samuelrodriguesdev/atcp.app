@@ -18,6 +18,7 @@ class ProjectoPedidosPagamento extends Migration
             $table->double('valor_pedido_pagamento');
             $table->double('valor_pago_pagamento');
             $table->date('data_pedido_pagamento');
+            $table->date('data_recebimento_pagamento');
             $table->smallInteger('estado_pedido_pagamento');
             $table->text('observacoes');
             $table->timestamps();

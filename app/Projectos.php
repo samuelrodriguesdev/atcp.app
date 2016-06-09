@@ -21,7 +21,7 @@ class Projectos extends Model
      * @var array
      */
     protected $fillable = [
-        'promotor_id', 'programa_id', 'apoio_criacao', 'apoio_criacao_estado', 'apoio_consolidacao', 'apoio_consolidacao_estado', 'apoio_tecnico_estado', 'declaracao_atcp', 'declaracao_atcp_data', 'contrato_atcp', 'contrato_atcp_data', 'projecto_data_inicio', 'projecto_data_submissao', 'projecto_data_aprovacao', 'projecto_data_fim', 'processo_numero', 'inicio_actividade_data', 'numero_meses', 'montante_total_elegivel', 'projecto_notas'
+        'promotor_id', 'programa_id', 'angariador_id', 'centro_emprego_id', 'apoio_criacao', 'apoio_criacao_estado', 'apoio_consolidacao', 'apoio_consolidacao_estado', 'apoio_tecnico_estado', 'declaracao_atcp', 'declaracao_atcp_data', 'contrato_atcp', 'contrato_atcp_data', 'projecto_data_inicio', 'projecto_data_submissao', 'projecto_data_aprovacao', 'projecto_data_fim', 'processo_numero', 'inicio_actividade_data', 'numero_meses', 'montante_total_elegivel', 'projecto_notas'
     ];
 	
 	/**
@@ -51,14 +51,24 @@ class Projectos extends Model
         return $this->belongsToMany('App\ProgramasApoiosDocumentos', 'projecto_documentos', 'projecto_id', 'documento_id');
     }
 
-    public function contratos()
-    {
-        return $this->hasMany('App\ProjectoConsultor', 'projecto_id', 'id');
-    }
+        public function contratos()
+        {
+            return $this->hasMany('App\ProjectoConsultor', 'projecto_id', 'id');
+        }
 
     public function pedidos_pagamento()
     {
         return $this->hasMany('App\ProjectoPP', 'projecto_id', 'id');
+    }
+
+    public function angariadores()
+    {
+        return $this->belongsTo('App\Consultores', 'angariador_id', 'id');
+    }
+
+    public function centro_emprego()
+    {
+        return $this->belongsTo('App\OrganismosEntidades', 'centro_emprego_id', 'id');
     }
 
     /**

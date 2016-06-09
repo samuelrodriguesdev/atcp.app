@@ -56,42 +56,43 @@
                 </label>
             </div>
         </div>
+        
         <div class="row hidden_inputs" id="consultoria_div" {{ $contrato->consultoria ==1 ? '' : 'style=display:none;' }}>
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="numero_horas_consultoria">NºHoras Consultoria</label>
-                <input type="text" name="numero_horas_consultoria" id="numero_horas_consultoria" class="form-control" value="{{ $contrato->numero_horas_consultoria }}">
+                <input type="number" name="numero_horas_consultoria" id="numero_horas_consultoria" class="form-control" value="{{ $contrato->numero_horas_consultoria }}">
             </div>
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="valor_hora_consultoria">€/H</label>
-                <input type="text" name="valor_hora_consultoria" id="valor_hora_consultoria" class="form-control" value="{{ $contrato->valor_hora_consultoria }}">
+                <input type="number" name="valor_hora_consultoria" id="valor_hora_consultoria" class="form-control" value="{{ $contrato->valor_hora_consultoria }}">
             </div>
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="total_consultoria">Total</label>
-                <input type="text" name="total_consultoria" id="total_consultoria" class="form-control" value="{{ $contrato->total_consultoria }}" readonly>
+                <input type="number" name="total_consultoria" id="total_consultoria" class="form-control" value="{{ $contrato->total_consultoria }}" readonly>
             </div>
         </div>
         <div class="row hidden_inputs" id="formacao_div" {{ $contrato->formacao ==1 ? '' : 'style=display:none;' }}>
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="numero_horas_formacao">NºHoras Formação</label>
-                <input type="text" name="numero_horas_formacao" id="numero_horas_formacao" class="form-control" value="{{ $contrato->numero_horas_formacao }}" >
+                <input type="number" name="numero_horas_formacao" id="numero_horas_formacao" class="form-control" value="{{ $contrato->numero_horas_formacao }}" >
             </div>
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="valor_hora_formacao">€/H</label>
-                <input type="text" name="valor_hora_formacao" id="valor_hora_formacao" class="form-control" value="{{ $contrato->valor_hora_formacao }}">
+                <input type="number" name="valor_hora_formacao" id="valor_hora_formacao" class="form-control" value="{{ $contrato->valor_hora_formacao }}">
             </div>
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="total_formacao">Total</label>
-                <input type="text" name="total_formacao" id="total_formacao" class="form-control" value="{{ $contrato->total_formacao }}" readonly>
+                <input type="number" name="total_formacao" id="total_formacao" class="form-control" value="{{ $contrato->total_formacao }}" readonly>
             </div>
         </div>
         <div class="row hidden_inputs" id="apoio_criacao_div" {{ $contrato->elaboracao_candidatura ==1 ? '' : 'style=display:none;' }}>
             <div class="form-group has-feedback col-md-8 col-xs-8">
                 <label for="numero_horas_apoio_criacao">% Elaboração da Candidatura</label>
-                <input type="text" name="percentagem_elaboracao_candidatura" id="percentagem_elaboracao_candidatura" value="{{ $contrato->percentagem_elaboracao_candidatura }}" class="form-control">
+                <input type="number" name="percentagem_elaboracao_candidatura" id="percentagem_elaboracao_candidatura" value="{{ $contrato->percentagem_elaboracao_candidatura }}" class="form-control">
             </div>
             <div class="form-group has-feedback col-md-4 col-xs-4">
                 <label for="total_apoio_criacao">Total</label>
-                <input type="text" name="total_elaboracao_candidatura" id="total_elaboracao_candidatura" class="form-control" value="{{ $contrato->total_elaboracao_candidatura }}" readonly>
+                <input type="number" name="total_elaboracao_candidatura" id="total_elaboracao_candidatura" class="form-control" value="{{ $contrato->total_elaboracao_candidatura }}" readonly>
             </div>
         </div>
     </div>
