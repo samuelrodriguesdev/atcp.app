@@ -151,10 +151,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('select/consultores_projecto', 'SelectController@lista_consultores_projecto');
 	Route::get('select/lista_organismos', 'SelectController@lista_organismos');
 	Route::get('select/lista_consultores', 'SelectController@lista_consultores');
+	Route::get('select/pp_years', 'SelectController@pp_years');
 
 
 	Route::get('estatistica/grafico1', 'EstatisticaController@total_por_mes_ano');
-	
+
 });
 
 

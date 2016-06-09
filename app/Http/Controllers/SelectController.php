@@ -294,4 +294,19 @@ class SelectController extends Controller
             return response()->json($results);
         }
     }
+
+    public function pp_years()
+    {
+        $years = DB::table('projecto_pedidos_pagamento')
+        ->select(DB::raw('distinct YEAR(data_pedido_pagamento) as id'), DB::raw('YEAR(data_pedido_pagamento) as text'))
+        ->orderBy(DB::raw('YEAR(data_pedido_pagamento)'))
+        ->get();
+        $results = [
+                "results" => $years,
+                "pagination" => [
+                    "more" => false
+                ],
+            ];
+        return response()->json($results);
+    }
 }

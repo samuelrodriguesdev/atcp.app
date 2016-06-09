@@ -11,7 +11,7 @@ use DB;
 
 class EstatisticaController extends Controller
 {
-    public function total_por_mes_ano()
+    public function total_por_mes_ano(Request $request)
     {
 
     	$liquidado = DB::table('projecto_pedidos_pagamento')
@@ -29,7 +29,8 @@ class EstatisticaController extends Controller
     		DB::raw( 'ROUND(SUM(CASE WHEN MONTH(data_recebimento_pagamento) = 11 THEN valor_pedido_pagamento ELSE 0 END), 2) AS Novembro'),
     		DB::raw( 'ROUND(SUM(CASE WHEN MONTH(data_recebimento_pagamento) = 12 THEN valor_pedido_pagamento ELSE 0 END), 2) AS Dezembro')
     		)
-    	->where([[DB::raw('YEAR(data_recebimento_pagamento)'),2013], ['estado_pedido_pagamento',2]])
+    		->where(DB::raw('YEAR(data_recebimento_pagamento)'),'like', $request->input('pp_year'))
+    	
     	->groupBy(DB::raw('YEAR(data_recebimento_pagamento)'))
     	->get();
 
@@ -48,11 +49,11 @@ class EstatisticaController extends Controller
     		DB::raw( 'ROUND(SUM(CASE WHEN MONTH(data_recebimento_pagamento) = 11 THEN valor_pedido_pagamento-valor_pago_pagamento ELSE 0 END), 2) AS Novembro'),
     		DB::raw( 'ROUND(SUM(CASE WHEN MONTH(data_recebimento_pagamento) = 12 THEN valor_pedido_pagamento-valor_pago_pagamento ELSE 0 END), 2) AS Dezembro')
     		)
-    	->where(DB::raw('YEAR(data_recebimento_pagamento)'),2013)
+    	->where(DB::raw('YEAR(data_recebimento_pagamento)'),'like', $request->input('pp_year'))
     	->whereIn('estado_pedido_pagamento', [1,3])
     	->groupBy(DB::raw('YEAR(data_recebimento_pagamento)'))
     	->get();
-    	
+
     	$results[0]=$liquidado;
     	$results[1]=$nao_liquidado;
     	return response()->json($results);

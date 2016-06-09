@@ -1,5 +1,33 @@
 var Url = config.url;
 
+$('#grafico1_input1').select2({
+    ajax: {
+        url: config.url+'/select/pp_years',
+        dataType: 'json',
+        data: function (params) {
+            return {
+                term : params.term || '',
+                page : params.page || 1
+            }
+        },
+        cache: true
+    },
+});
+
+$('#grafico1_input2').select2({
+    ajax: {
+        url: config.url+'/select/lista_organismos',
+        dataType: 'json',
+        data: function (params) {
+            return {
+                term : params.term || '',
+                page : params.page || 1
+            }
+        },
+        cache: true
+    },
+});
+
 var doughnutScalingFactor = function() {
     return Math.round(Math.random() * 100);
 };
@@ -93,39 +121,57 @@ $('#randomizeDoughnut').click(function() {
     });
     window.myDoughnut.update();
 });
+
+
 $.ajax({
     url: Url+'/estatistica/grafico1',
     dataType: 'json',
     type: "get",
 }).done(function (result) {
-    var array = $.map(result[1][0], function(el) { return el });
-    var i, j=0, sum = 0, new_array = [];
-    for (i=0;i<array.length; i++) {
-        j++;
-        sum+=array[i];
-        if (j == 3) {
-            new_array.push(sum.toFixed(2));
-            sum=0;
-            j=1;
+    var array_liquidado = $.map(result[0][0], function(el) { return el });
+    var array_nao_liquidado =  $.map(result[1][0], function(el) { return el })
+    
+
+    function getTrimestres(array) {
+        var i, j=0, sum = 0, new_array = [];
+        for (i=0;i<array.length; i++) {
+            j++;
+            sum+=array[i];
+            if (j == 3) {
+                new_array.push(parseInt(sum.toFixed(2)));
+                sum=0;
+                j=0;
+            }
         }
+        return new_array;
     }
-    console.log(new_array);
-    var barScalingFactor = function() {
-        return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
-    };
+    function getTrimestres2(array) {
+        var i, j=0, sum = 0, new_array = [];
+        for (i=0;i<array.length; i++) {
+            j++;
+            sum-=array[i];
+            if (j == 3) {
+                new_array.push(parseInt(sum.toFixed(2)));
+                sum=0;
+                j=0;
+            }
+        }
+        return new_array;
+    }
+    console.log(getTrimestres(array_liquidado))
     var barColorFactor = function() {
         return Math.round(Math.random() * 255);
     };
     var barChartData = {
-        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",],
+        labels: ['1º', '2º', '3º', '4º'],
         datasets: [{
             label: 'P.P Liquidados',
             backgroundColor: "rgba(220,220,220,0.5)",
-            data: $.map(result[0][0], function(el) { return el })
+            data: getTrimestres(array_liquidado)
         }, {
             label: 'P.P Não Liquidados',
             backgroundColor: "rgba(151,187,205,0.5)",
-            data: $.map(result[1][0], function(el) { return el })
+            data: getTrimestres2(array_nao_liquidado)
         }]
     };
 
@@ -134,6 +180,10 @@ $.ajax({
         type: 'bar',
         data: barChartData,
         options: {
+            title:{
+                display:true,
+                text:"Pedidos de Pagamento"
+            },
             tooltips: {
                 mode: 'label'
             },
@@ -150,11 +200,11 @@ $.ajax({
     });
     var doughnut = document.getElementById("doughnut").getContext("2d");
     window.myDoughnut = new Chart(doughnut, config);
-    $('#randomizeBar').click(function() {
+    $('#input1').change(function() {
         $.each(barChartData.datasets, function(i, dataset) {
-            dataset.backgroundColor = 'rgba(' + barColorFactor() + ',' + barColorFactor() + ',' + barColorFactor() + ',.7)';
-            dataset.data = result;
-        });
+                dataset.backgroundColor = 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+                dataset.data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+            });
         window.myBar.update();
     });
 });

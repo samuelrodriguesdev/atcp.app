@@ -65,13 +65,20 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">P.P por Centro de Emprego</h3>
-                    <div class="btn-group pull-right">
-                        <button type="button" id="randomizeBar" class="btn btn-default btn-flat">button</button>
-                    </div>
+                    <h3 class="box-title"></h3>
+                    <div class="has-feedback col-md-2 pull-right">
+                        <select id="grafico1_input1" class="form-control" style="width:100%;">
+                            
+                        </select>
+                    </div> 
+                    <div class="has-feedback col-md-5 pull-right">
+                        <select id="grafico1_input2" class="form-control" style="width:100%;">
+                           
+                        </select>
+                    </div> 
                 </div>
                 <div class="box-body">
-                <canvas id="bar" style="height:150px;"></canvas>
+                    <canvas id="bar" style="height:250px;"></canvas>
                 </div>
             </div>
         </div>
