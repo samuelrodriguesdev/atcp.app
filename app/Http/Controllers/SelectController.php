@@ -273,12 +273,13 @@ class SelectController extends Controller
 
             $offset = ($page - 1) * $resultCount;
 
-            $consultores = DB::table('organismos_entidades')
+            $consultores = DB::table('projectos')
+                            ->join('organismos_entidades', 'projectos.centro_emprego_id', '=', 'organismos_entidades.id')
                             ->where('nome', 'LIKE',  '%' . $request->input("term"). '%')
                             ->orderBy('nome')
                             ->skip($offset)
                             ->take($resultCount)
-                            ->get([ DB::raw('id'), DB::raw('nome as text') ]);
+                            ->get([ DB::raw(' DISTINCT projectos.centro_emprego_id as id'), DB::raw('organismos_entidades.nome as text') ]);
 
             $count = DB::table('organismos_entidades')->count();
             $endCount = $offset + $resultCount;

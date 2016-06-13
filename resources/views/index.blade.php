@@ -66,14 +66,14 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"></h3>
-                    <div class="has-feedback col-md-2 pull-right">
+                    <div class="has-feedback col-md-3 pull-right">
                         <select id="grafico1_input1" class="form-control" style="width:100%;">
-                            
+
                         </select>
                     </div> 
                     <div class="has-feedback col-md-5 pull-right">
                         <select id="grafico1_input2" class="form-control" style="width:100%;">
-                           
+
                         </select>
                     </div> 
                 </div>
@@ -84,16 +84,45 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Total Facturado por CE</h3>
-                    <div class="btn-group pull-right">
-                        <button type="button" id="randomizeDoughnut" class="btn btn-default btn-flat">button</button>
-                    </div>
+                    <h3 class="box-title"></h3>
+                    <div class="has-feedback col-md-3 pull-right">
+                    <select id="grafico2_input1" class="form-control" style="width:100%;">
+
+                        </select>
+                    </div> 
+                    <div class="has-feedback col-md-5 pull-right">
+                        <select id="grafico2_input2" class="form-control" style="width:100%;">
+
+                        </select>
+                    </div> 
                 </div>
                 <div class="box-body">
                     <canvas id="doughnut" style="height:150px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                    <div class="has-feedback col-md-3 pull-right">
+                    <select id="grafico3_input1" class="form-control" style="width:100%;">
+
+                        </select>
+                    </div> 
+                    <div class="has-feedback col-md-5 pull-right">
+                        <select id="grafico3_input2" class="form-control" style="width:100%;">
+
+                        </select>
+                    </div> 
+                </div>
+                <div class="box-body">
+                    <canvas id="grafico3" style="height:150px;"></canvas>
                 </div>
             </div>
         </div>
