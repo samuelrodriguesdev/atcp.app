@@ -1,6 +1,8 @@
 var Url = config.url;
 
-$('#grafico1_input1').select2({
+$('#grafico1_input1, #grafico2_input1').select2({
+    placeholder: '',
+    allowClear: true,
     ajax: {
         url: config.url+'/select/pp_years',
         dataType: 'json',
@@ -14,7 +16,9 @@ $('#grafico1_input1').select2({
     },
 });
 
-$('#grafico1_input2').select2({
+$('#grafico1_input2, #grafico2_input2').select2({
+    placeholder: '',
+    allowClear: true,
     ajax: {
         url: config.url+'/select/lista_organismos',
         dataType: 'json',
@@ -28,99 +32,63 @@ $('#grafico1_input2').select2({
     },
 });
 
-var doughnutScalingFactor = function() {
-    return Math.round(Math.random() * 100);
-};
-var doughnutColorFactor = function() {
-    return Math.round(Math.random() * 255);
-};
-var doughnutColor = function(opacity) {
-    return 'rgba(' + doughnutColorFactor() + ',' + doughnutColorFactor() + ',' + doughnutColorFactor() + ',' + (opacity || '.3') + ')';
-};
-var config = {
-    type: 'doughnut',
-    data: {
-        datasets: [{
-            data: [
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            ],
-            backgroundColor: [
-            "#F7464A",
-            "#46BFBD",
-            "#FDB45C",
-            "#949FB1",
-            "#4D5360",
-            ],
-            label: 'Dataset 1'
-        }, {
-            hidden: true,
-            data: [
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            ],
-            backgroundColor: [
-            "#F7464A",
-            "#46BFBD",
-            "#FDB45C",
-            "#949FB1",
-            "#4D5360",
-            ],
-            label: 'Dataset 2'
-        }, {
-            data: [
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            doughnutScalingFactor(),
-            ],
-            backgroundColor: [
-            "#F7464A",
-            "#46BFBD",
-            "#FDB45C",
-            "#949FB1",
-            "#4D5360",
-            ],
-            label: 'Dataset 3'
-        }],
-        labels: [
-        "Red",
-        "Green",
-        "Yellow",
-        "Grey",
-        "Dark Grey"
-        ]
-    },
-    options: {
-        responsive: true,
-        legend: {
-            position: 'top',
-        },
 
-        animation: {
-            animateScale: true,
-            animateRotate: true
+$.ajax({
+    url: Url+'/estatistica/grafico2',
+    dataType: 'json',
+    type: "get",
+}).done(function (result) {
+    var config = {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: $.map(result[0], function(el) { return el }),
+                backgroundColor: [
+                "#9933ff",
+                "#F7464A",
+                "#46BFBD",
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+            "Total",
+            "Não Liquidado",
+            "Liquidado",
+            ]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
         }
-    }
-};
-$('#randomizeDoughnut').click(function() {
-    $.each(config.data.datasets, function(i, dataset) {
-        dataset.data = dataset.data.map(function() {
-            return doughnutScalingFactor();
-        });
-        dataset.backgroundColor = dataset.backgroundColor.map(function() {
-            return doughnutColor(0.7);
+    };
+    var doughnut = document.getElementById("doughnut").getContext("2d");
+    window.myDoughnut = new Chart(doughnut, config);
+
+    $('#grafico2_input2, #grafico2_input1').change(function() {
+        var ppCe = $('#grafico2_input2').val(),
+        ppYear         = $('#grafico2_input1').val();
+        $.ajax({
+            url: Url+'/estatistica/grafico2',
+            dataType: 'json',
+            type: "get",
+            data: { "ppYear": ppYear, "ppCe": ppCe },
+        }).done(function (result) {
+
+            $.each(config.data.datasets, function(i, dataset) {
+                dataset.data = $.map(result[0], function(el) { return el });
+            });
+            window.myDoughnut.update();
         });
     });
-    window.myDoughnut.update();
 });
+
 
 
 $.ajax({
@@ -128,50 +96,17 @@ $.ajax({
     dataType: 'json',
     type: "get",
 }).done(function (result) {
-    var array_liquidado = $.map(result[0][0], function(el) { return el });
-    var array_nao_liquidado =  $.map(result[1][0], function(el) { return el })
-    
 
-    function getTrimestres(array) {
-        var i, j=0, sum = 0, new_array = [];
-        for (i=0;i<array.length; i++) {
-            j++;
-            sum+=array[i];
-            if (j == 3) {
-                new_array.push(parseInt(sum.toFixed(2)));
-                sum=0;
-                j=0;
-            }
-        }
-        return new_array;
-    }
-    function getTrimestres2(array) {
-        var i, j=0, sum = 0, new_array = [];
-        for (i=0;i<array.length; i++) {
-            j++;
-            sum-=array[i];
-            if (j == 3) {
-                new_array.push(parseInt(sum.toFixed(2)));
-                sum=0;
-                j=0;
-            }
-        }
-        return new_array;
-    }
-    console.log(getTrimestres(array_liquidado))
-    var barColorFactor = function() {
-        return Math.round(Math.random() * 255);
-    };
     var barChartData = {
         labels: ['1º', '2º', '3º', '4º'],
         datasets: [{
-            label: 'P.P Liquidados',
-            backgroundColor: "rgba(220,220,220,0.5)",
-            data: getTrimestres(array_liquidado)
+            label: 'P.P Valor Pedido',
+            backgroundColor: "rgba(0,255,0,0.3)",
+            data: result[0]
         }, {
-            label: 'P.P Não Liquidados',
-            backgroundColor: "rgba(151,187,205,0.5)",
-            data: getTrimestres2(array_nao_liquidado)
+            label: 'P.P Valor em Dívida',
+            backgroundColor: "rgba(255,0,0,0.3)",
+            data: result[1]
         }]
     };
 
@@ -198,13 +133,83 @@ $.ajax({
             }
         }
     });
-    var doughnut = document.getElementById("doughnut").getContext("2d");
-    window.myDoughnut = new Chart(doughnut, config);
-    $('#input1').change(function() {
-        $.each(barChartData.datasets, function(i, dataset) {
-                dataset.backgroundColor = 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
-                dataset.data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+    
+    $('#grafico1_input2, #grafico1_input1').change(function() {
+        var ppCe = $('#grafico1_input2').val(),
+        ppYear         = $('#grafico1_input1').val();
+        $.ajax({
+            url: Url+'/estatistica/grafico1',
+            dataType: 'json',
+            type: "get",
+            data: { "ppYear": ppYear, "ppCe": ppCe },
+        }).done(function (result) {
+
+            $.each(barChartData.datasets, function(i, dataset) {
+                dataset.data = result[i];
             });
-        window.myBar.update();
+            window.myBar.update();
+        });
+    });
+});
+
+$.ajax({
+    url: Url+'/estatistica/grafico3',
+    dataType: 'json',
+    type: "get",
+}).done(function (result) {
+
+    var barChartData = {
+        labels: ['1º', '2º', '3º', '4º'],
+        datasets: [{
+            label: 'NºHoras Consultoria',
+            backgroundColor: "rgba(0,255,0,0.3)",
+            data: [200,100,150,125]
+        }, {
+            label: 'Total Consultoria',
+            backgroundColor: "rgba(255,0,0,0.3)",
+            data: [1000,2000,3000,4000]
+        },{
+            label: 'NºHoras Formação',
+            backgroundColor: "rgba(255,0,0,0.3)",
+            data: [125,150,100,200]
+        },{
+            label: 'Total Formação',
+            backgroundColor: "rgba(255,0,0,0.3)",
+            data: [4000,3000,2000,1000]
+        }]
+    };
+
+    var bar = document.getElementById("grafico3").getContext("2d");
+    window.myBar = new Chart(bar, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            title:{
+                display:true,
+                text:"Pedidos de Pagamento"
+            },
+            tooltips: {
+                mode: 'label'
+            },
+            responsive: true,
+            
+        }
+    });
+    
+    $('#grafico1_input2, #grafico1_input1').change(function() {
+        var ppCe = $('#grafico1_input2').val(),
+        ppYear         = $('#grafico1_input1').val();
+        $.ajax({
+            url: Url+'/estatistica/grafico1',
+            dataType: 'json',
+            type: "get",
+            data: { "ppYear": ppYear, "ppCe": ppCe },
+        }).done(function (result) {
+
+            $.each(barChartData.datasets, function(i, dataset) {
+                dataset.data = result[i];
+            });
+            window.myBar.update();
+        });
     });
 });
