@@ -157,6 +157,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('estatistica/grafico1', 'EstatisticaController@total_por_mes_ano');
 	Route::get('estatistica/grafico2', 'EstatisticaController@total_por_estado');
 	Route::get('estatistica/grafico3', 'EstatisticaController@total_por_apoio');
+	Route::get('estatistica/grafico4', 'EstatisticaController@total_por_programa_centro');
 });
 
 

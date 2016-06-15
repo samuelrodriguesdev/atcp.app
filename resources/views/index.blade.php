@@ -68,12 +68,10 @@
                     <h3 class="box-title"></h3>
                     <div class="has-feedback col-md-3 pull-right">
                         <select id="grafico1_input1" class="form-control" style="width:100%;">
-
                         </select>
                     </div> 
                     <div class="has-feedback col-md-5 pull-right">
                         <select id="grafico1_input2" class="form-control" style="width:100%;">
-
                         </select>
                     </div> 
                 </div>
@@ -89,13 +87,11 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"></h3>
                     <div class="has-feedback col-md-3 pull-right">
-                    <select id="grafico2_input1" class="form-control" style="width:100%;">
-
+                        <select id="grafico2_input1" class="form-control" style="width:100%;">
                         </select>
                     </div> 
                     <div class="has-feedback col-md-5 pull-right">
                         <select id="grafico2_input2" class="form-control" style="width:100%;">
-
                         </select>
                     </div> 
                 </div>
@@ -111,13 +107,30 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"></h3>
                     <div class="has-feedback col-md-3 pull-right">
-                    <select id="grafico3_input1" class="form-control" style="width:100%;">
-
+                        <select id="grafico3_input3" class="form-control" data-placeholder="Ano"style="width:100%;">
                         </select>
                     </div> 
-                    <div class="has-feedback col-md-5 pull-right">
-                        <select id="grafico3_input2" class="form-control" style="width:100%;">
-
+                    <div class="has-feedback col-md-3 pull-right">
+                        <select id="grafico3_input2" class="form-control" data-placeholder="Centro de Emprego" style="width:100%;">
+                        </select>
+                    </div> 
+                    <div class="has-feedback col-md-3 pull-right" id="apoio_tipo" style="display:none;">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" class="chk_search" value="1" id="consultoria">
+                                Consultoria
+                            </label>
+                            <label>
+                                <input type="checkbox" class="chk_search" value="1" id="formacao">
+                                Formação
+                            </label>
+                        </div>
+                    </div>
+                    <div class="has-feedback col-md-3 pull-right">
+                        <select id="grafico3_input1" class="form-control" data-placeholder="Tipo de Apoio" style="width:100%;">
+                            <option></option>
+                            <option value="1">Apoio á Criação</option>
+                            <option value="2">Apoio á Consolidação</option>
                         </select>
                     </div> 
                 </div>
@@ -127,7 +140,30 @@
             </div>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                    <div class="has-feedback col-md-3 pull-right">
+                        <select id="grafico4_input1" class="form-control" style="width:100%;">
+                        </select>
+                    </div> 
+                    <div class="has-feedback col-md-5 pull-right">
+                        <select id="grafico4_input2" class="form-control" style="width:100%;">
+                        </select>
+                    </div> 
+                </div>
+                <div class="box-body">
+                    <canvas id="grafico4" style="height:150px;"></canvas>
+                    
+                </div>
+                <div class="box-footer">
+                    <div id="chartjs-tooltip"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 @endsection
 @section('javascript')
