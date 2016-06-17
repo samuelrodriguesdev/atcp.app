@@ -499,50 +499,39 @@ return response()->json($result);
 public function total_por_programa_centro(Request $request)
 {
 	DB::setFetchMode(PDO::FETCH_ASSOC);
-	$result = DB::table('projectos')
-	->select( DB::raw('count(projectos.id) as total_projectos'), DB::raw('organismos_entidades.nome'))
-	->join('organismos_entidades', 'projectos.centro_emprego_id', '=', 'organismos_entidades.id')
-	->groupBy('centro_emprego_id')
-	->when($request->has('ppYear'), function ($query) use ( $request ) {
-		return $query->where(DB::raw('YEAR(projecto_data_inicio)'), $request->input('ppYear'));
-	})
-	->when($request->has('ppYear'), function ($query) use ( $request ) {
+
+	/*->when($request->has('ppYear'), function ($query) use ( $request ) {
 		return $query->groupBy(DB::raw('YEAR(data_recebimento_pagamento)'));
-	})
-	->when($request->has('ppCe'), function ($query) use ( $request ) {
-		return $query->where('centro_emprego_id', $request->input('ppCe'));
-	})
-	->get();
+	})*/
 
-	$centros_emprego = DB::table('projectos')
-	->select('centro_emprego_id')
-	->distinct()
-	->get();
-	$finalResult = [];
-	foreach ($centros_emprego as $id) {
 
-		$total_por_programa = DB::table('projectos')
-		->select(DB::raw('COUNT(projectos.id) as Total'), DB::raw('designacao as Label'))
-		->join('programas', 'projectos.programa_id', '=', 'programas.id')
-		->where('centro_emprego_id', $id['centro_emprego_id'])
-		->groupBy('programa_id')
+	$programas = DB::table('projectos')
+	->select('centro_emprego_id', 'nome')
+	->distinct() 
+	->leftJoin('organismos_entidades','projectos.centro_emprego_id', '=', 'organismos_entidades.id')
+	->orderBy('centro_emprego_id')
+	->get();
+	$Results= [];
+	foreach ($programas as $id) {
+
+		$total_por_programa = DB::table('programas')
+		->select(DB::raw('COUNT(projectos.id) as Total'))
+		->leftJoin('projectos', function ($join) use ($id) {
+			$join->on('projectos.programa_id', '=', 'programas.id')
+			->where('projectos.centro_emprego_id', '=', $id['centro_emprego_id']);
+		})
+		->orderBy('centro_emprego_id')
+		->groupBy(DB::raw('programas.id'))
 		->get();
-		$finalResult[$id['centro_emprego_id']] = $total_por_programa;
+		$Results['data'][$id['centro_emprego_id']] = array_flatten($total_por_programa);
 	}
-	dd($finalResult);
-	DB::setFetchMode(PDO::FETCH_CLASS);
-	$result = array_flatten($result);
 
-	$labels=[];
-	$data=[];
-	for ($n= 1; $n <=count($result); $n+=2) {
-		$value = $result[$n-1];
-		$label = $result[$n];
-		array_push($labels, $label);
-		array_push($data, $value);
-	}
-	$results['labels'] = $labels;
-	$results['data'] = $data;
-	return response()->json($results);
+	DB::setFetchMode(PDO::FETCH_CLASS);
+	
+	$labels = array_pluck($programas, 'nome');
+	$Results['labels'] = $labels;
+    $data = array_values($Results['data']);
+    $Results['data'] = $data;
+	return response()->json($Results);
 }
 }

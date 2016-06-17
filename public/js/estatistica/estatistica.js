@@ -9,7 +9,9 @@ var randomColor = function(opacity) {
 var randomHexColor = function() {
     return '#'+Math.floor(Math.random()*16777215).toString(16);
 }
-
+var randomValue = function() {
+    return Math.round(Math.random() * 100);
+}
 $('input').iCheck({
     checkboxClass : 'icheckbox_flat-green',
     radioClass    : 'iradio_flat-green',
@@ -298,67 +300,54 @@ $.ajax({
     url: Url+'/estatistica/grafico4',
     dataType: 'json',
     type: "get",
-}).done(function (result) {
+}).done(function (results) {
 
     var grafico4Data = {
-        labels: $.map(result.labels, function(el) { return el }),
-        datasets: [{
-            label: 'Nº Projectos',
-            backgroundColor: randomColor(0.4),
-            data: $.map(result.data, function(el) { return el }),
-        }]
+        labels: results.labels,
+        datasets:[]
     };
-    var grafico4Config = {
-        type: 'bar',
-        data: grafico4Data,
-        options: { 
-            title:{
-                display:true,
-                text:"Total por Centro de Emprego"
-            },
-            tooltips: {
-                mode: 'label'
-            },
-            legend:{
-                display: false,
-            },
-            responsive: true,
-            scales: {
-                xAxes: [{
-                    ticks:{
-                        //minRotation: 90,
-                        //display: true,
-                        autoSkip:false,
-                    },
-                }],
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                    },
-                }]
-            },
-        }
-    };
+    
+    grafico4Data.datasets=[];
+    console.log(results['data']);
+    for (var i = 0; i < results['data'].length; i++) {
+        var newDataset = {
+            label: 'zz',
+            borderColor: randomColor(0.4),
+            backgroundColor: randomColor(0.5),
+            pointBorderColor: randomColor(0.7),
+            pointBackgroundColor: randomColor(0.5),
+            pointBorderWidth: 1,
+            data: results.data[i],
+        };
+        grafico4Data.datasets.push(newDataset);
+       
+    }
+    
 
-    var grafico4ConfigTeste = {
+    var grafico4Config = {
         type: 'horizontalBar',
         data: grafico4Data,
         options: {
            tooltips: {
-                mode: 'label'
-            },
-            responsive: true,
-            legend: {
-                display:false,
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Horizontal Bar Chart'
-            }
+            mode: 'label'
+        },
+        responsive: true,
+        legend: {
+            display:false,
+        },
+        title: {
+            display: true,
+            text: 'Chart.js Horizontal Bar Chart'
+        },
+        scales: {
+            yAxes: [{
+                stacked: true
+            }]
         }
-    };
-    var grafico4 = document.getElementById("grafico4").getContext("2d");
-    window.grafico4 = new Chart(grafico4, grafico4ConfigTeste);
+    }
+};
+var grafico4 = document.getElementById("grafico4").getContext("2d");
+window.grafico4 = new Chart(grafico4, grafico4Config);
 
     /*$('#grafico4_input1, #grafico4_input2, #grafico4_input3').change(function() {
         var ppCe   = $('#grafico4_input2').val(),
