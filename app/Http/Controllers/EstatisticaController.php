@@ -1,17 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use DB;
-
 use PDO;
-
 use App\Helpers\Helper;
-
 class EstatisticaController extends Controller
 {
 	public function total_por_mes_ano(Request $request, Helper $helper)
@@ -43,7 +36,6 @@ class EstatisticaController extends Controller
 			return $query->where('centro_emprego_id', $request->input('ppCe'));
 		})
 		->get();
-
 		$nao_liquidado = DB::table('projecto_pedidos_pagamento')
 		->select( 
 			DB::raw( 'ROUND(SUM(CASE WHEN MONTH(data_recebimento_pagamento) = 1 THEN valor_pago_pagamento-valor_pedido_pagamento ELSE 0 END), 2) AS Janeiro'), 
@@ -71,22 +63,13 @@ class EstatisticaController extends Controller
 		})
 		->whereIn('estado_pedido_pagamento', [1,3])
 		->get();
-
 		DB::setFetchMode(PDO::FETCH_CLASS);
-
-		
 		$results[0]=$helper->formatArray($liquidado);
 		$results[1]=$helper->formatArray($nao_liquidado);
-
-
-
-
 		return response()->json($results);
 	}
-
 	public function total_por_estado(Request $request)
 	{
-		
 		$result = DB::table('projecto_pedidos_pagamento')
 		->select( DB::raw('ROUND(SUM(valor_pedido_pagamento), 2) AS Total'),
 			DB::raw( 'ROUND(SUM(CASE WHEN estado_pedido_pagamento = 1 THEN valor_pedido_pagamento  WHEN estado_pedido_pagamento = 3 THEN valor_pedido_pagamento - valor_pago_pagamento ELSE 0 END), 2) AS Nao_Liquidado'), 
@@ -103,11 +86,8 @@ class EstatisticaController extends Controller
 			return $query->where('centro_emprego_id', $request->input('ppCe'));
 		})
 		->get();
-
-		
 		return response()->json($result);
 	}
-
 	public function total_por_apoio(Request $request)
 	{
 		DB::setFetchMode(PDO::FETCH_ASSOC);
@@ -453,85 +433,69 @@ class EstatisticaController extends Controller
 ->when($request->has('ppCe'), function ($query) use ( $request ) {
 	return $query->where('centro_emprego_id', $request->input('ppCe'));
 })
-
 ->get();
 DB::setFetchMode(PDO::FETCH_CLASS);
-
 if ($request->has('contrato_tipo') && $request->input('contrato_tipo') == 2 && $request->input('consultoria') == 'true' && $request->input('formacao') == 'false') {
-
 	$result=array_chunk(array_flatten($result), 4);
 	$result[0] = [ 'label' => 'Total Consultoria', 'data' => $result[0]  ];
 	$result[1] = [ 'label' => 'Total Horas Consultoria', 'data' => $result[1]  ];
-
-
 } elseif ($request->has('contrato_tipo') && $request->input('contrato_tipo') == 2 && $request->input('consultoria') == 'true' && $request->input('formacao') == 'true') {
-
 	$result=array_chunk(array_flatten($result), 4);
 	$result[0] = [ 'label' => 'Total Consultoria', 'data' => $result[0]  ];
 	$result[1] = [ 'label' => 'Total Horas Consultoria', 'data' => $result[1]  ];
 	$result[2] = [ 'label' => 'Total Formação', 'data' => $result[2]  ];
 	$result[3] = [ 'label' => 'Total Horas Formação', 'data' => $result[3]  ];
-
 } elseif ($request->has('contrato_tipo') && $request->input('contrato_tipo') == 2 && $request->input('consultoria') == 'false' && $request->input('formacao') == 'true') {
-
 	$result=array_chunk(array_flatten($result), 4);
 	$result[0] = [ 'label' => 'Total Formação', 'data' => $result[0]  ];
 	$result[1] = [ 'label' => 'Total Horas Formação', 'data' => $result[1]  ];
-
-
 } elseif($request->only('contrato_tipo') && $request->input('contrato_tipo') == 2){
-
 	$result=array_chunk(array_flatten($result), 4);
 	$result[0] = [ 'label' => 'Total Consultoria', 'data' => $result[0]  ];
 	$result[1] = [ 'label' => 'Total Formação', 'data' => $result[1]  ];
-
 } elseif (!$request->has('contrato_tipo') || $request->input('contrato_tipo') ==1) {
-
 	$result=array_chunk(array_flatten($result), 4);
 	$result[0] = [ 'label' => 'Total Elaboração de Candidatura', 'data' => $result[0]  ];
 	$result[1] = [ 'label' => 'Total Consultoria', 'data' => $result[1]  ];
 	$result[2] = [ 'label' => 'Total Formação', 'data' => $result[2]  ];
-
 }
-
 return response()->json($result);
 }
 public function total_por_programa_centro(Request $request)
 {
 	DB::setFetchMode(PDO::FETCH_ASSOC);
-
-	/*->when($request->has('ppYear'), function ($query) use ( $request ) {
-		return $query->groupBy(DB::raw('YEAR(data_recebimento_pagamento)'));
-	})*/
-
-
+	
+	$centros = DB::table('organismos_entidades')
+	->select('id', 'nome')	
+	->orderBy('id')
+	->get();
 	$programas = DB::table('projectos')
-	->select('centro_emprego_id', 'nome')
+	->select('programa_id', 'designacao')
 	->distinct() 
-	->leftJoin('organismos_entidades','projectos.centro_emprego_id', '=', 'organismos_entidades.id')
-	->orderBy('centro_emprego_id')
+	->leftJoin('programas','projectos.programa_id', '=', 'programas.id')
+	->orderBy('programa_id')
 	->get();
 	$Results= [];
-	foreach ($programas as $id) {
-
-		$total_por_programa = DB::table('programas')
+	foreach ($programas as $programa) {
+		$total_por_programa = DB::table('organismos_entidades')
 		->select(DB::raw('COUNT(projectos.id) as Total'))
-		->leftJoin('projectos', function ($join) use ($id) {
-			$join->on('projectos.programa_id', '=', 'programas.id')
-			->where('projectos.centro_emprego_id', '=', $id['centro_emprego_id']);
+		->leftJoin('projectos', function ($join) use ($programa, $request) {
+			$join->on('projectos.centro_emprego_id', '=', 'organismos_entidades.id')
+			->where('projectos.programa_id', '=', $programa['programa_id'])
+			->where(DB::raw('YEAR(projecto_data_inicio)'),'=',  $request->input('ppYear') );	
 		})
-		->orderBy('centro_emprego_id')
-		->groupBy(DB::raw('programas.id'))
+		->orderBy('organismos_entidades.id')
+		->groupBy(DB::raw('organismos_entidades.id'))
 		->get();
-		$Results['data'][$id['centro_emprego_id']] = array_flatten($total_por_programa);
+		$Results['data'][$programa['programa_id']] = array_flatten($total_por_programa);
 	}
-
 	DB::setFetchMode(PDO::FETCH_CLASS);
-	
-	$labels = array_pluck($programas, 'nome');
+	$labels = array_pluck($centros, 'nome');
+	$programasLabels = array_pluck($programas, 'designacao');
+	$Results['programas'] = $programasLabels;
 	$Results['labels'] = $labels;
-    $data = array_values($Results['data']);
-    $Results['data'] = $data;
+	$data = array_values($Results['data']);
+	$Results['data'] = $data;
 	return response()->json($Results);
 }
 }

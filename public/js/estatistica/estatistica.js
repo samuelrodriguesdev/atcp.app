@@ -18,7 +18,7 @@ $('input').iCheck({
     increaseArea  : '20%' 
 });
 
-$('#grafico1_input1, #grafico2_input1, #grafico3_input3').select2({
+$('#grafico1_input1, #grafico2_input1, #grafico3_input3,#grafico4_input1').select2({
     placeholder: '',
     allowClear: true,
     ajax: {
@@ -295,23 +295,22 @@ $.ajax({
 });
 
 
-
+var ppYear   = 2016;
 $.ajax({
     url: Url+'/estatistica/grafico4',
     dataType: 'json',
     type: "get",
+    data: { "ppYear": ppYear},
 }).done(function (results) {
 
     var grafico4Data = {
         labels: results.labels,
         datasets:[]
     };
-    
     grafico4Data.datasets=[];
-    console.log(results['data']);
-    for (var i = 0; i < results['data'].length; i++) {
+    for (var i = 0; i < results.data.length; i++) {
         var newDataset = {
-            label: 'zz',
+            label: results.programas[i],
             borderColor: randomColor(0.4),
             backgroundColor: randomColor(0.5),
             pointBorderColor: randomColor(0.7),
@@ -320,54 +319,57 @@ $.ajax({
             data: results.data[i],
         };
         grafico4Data.datasets.push(newDataset);
-       
+
     }
-    
+
 
     var grafico4Config = {
         type: 'horizontalBar',
         data: grafico4Data,
         options: {
-           tooltips: {
-            mode: 'label'
-        },
-        responsive: true,
-        legend: {
-            display:false,
-        },
-        title: {
-            display: true,
-            text: 'Chart.js Horizontal Bar Chart'
-        },
-        scales: {
-            yAxes: [{
-                stacked: true
-            }]
+            tooltips: {
+                mode: 'label'
+            },
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Chart.js Horizontal Bar Chart'
+            },
+            scales: {
+                yAxes: [{
+                    stacked: true
+                }]
+            }
         }
-    }
-};
-var grafico4 = document.getElementById("grafico4").getContext("2d");
-window.grafico4 = new Chart(grafico4, grafico4Config);
+    };
+    var grafico4 = document.getElementById("grafico4").getContext("2d");
+    window.grafico4 = new Chart(grafico4, grafico4Config);
 
-    /*$('#grafico4_input1, #grafico4_input2, #grafico4_input3').change(function() {
-        var ppCe   = $('#grafico4_input2').val(),
-        ppYear     = $('#grafico4_input1').val(),
-        ppPrograma = $('#grafico4_input3').val();
+    $('#grafico4_input1').change(function() {
+        var ppYear   = $('#grafico4_input1').val();
+
         $.ajax({
             url: Url+'/estatistica/grafico4',
             dataType: 'json',
             type: "get",
-            data: { "ppYear": ppYear, "ppCe": ppCe, "ppPrograma": ppPrograma},
-        }).done(function (result) {
+            data: { "ppYear": ppYear},
+        }).done(function (results) {
 
-            grafico4Config.data.labels = result.labels;
-            dataset.data = result.data;
-            dataset.backgroundColor = result.data;
-            $.each(result.labels, function(index, val) {
-                colorArray.push(randomHexColor());
-            });
-            dataset.backgroundColor = colorArray;
+            grafico4Config.data.datasets=[];
+            for (var i = 0; i < results.data.length; i++) {
+                var newDataset = {
+                    label: results.programas[i],
+                    borderColor: randomColor(0.4),
+                    backgroundColor: randomColor(0.5),
+                    pointBorderColor: randomColor(0.7),
+                    pointBackgroundColor: randomColor(0.5),
+                    pointBorderWidth: 1,
+                    data: results.data[i],
+                };
+                grafico4Config.data.datasets.push(newDataset);
+               
+            }
             window.grafico4.update();
         })
-    });*/
+    });
 });

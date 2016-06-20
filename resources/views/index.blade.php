@@ -146,11 +146,9 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"></h3>
                     <div class="has-feedback col-md-3 pull-right">
-                        <select id="grafico4_input1" class="form-control" style="width:100%;">
-                        </select>
-                    </div> 
-                    <div class="has-feedback col-md-5 pull-right">
-                        <select id="grafico4_input2" class="form-control" style="width:100%;">
+                        <select id="grafico4_input1" class="form-control"  style="width:100%;" data-placeholder="Ano" data-allow-clear="true">
+                        <option value="2016"> 2016</option>
+                        
                         </select>
                     </div> 
                 </div>
