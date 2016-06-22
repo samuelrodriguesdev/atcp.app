@@ -29,15 +29,9 @@ class OrganismosEntidadesController extends Controller
     public function anyData() 
     {
         $organismosEntidades = DB::table('organismos_entidades')
-                                ->select(['id', 'nome', 'created_at', 'updated_at']);
+                                ->select(['id', 'nome', 'localidade']);
         return Datatables::of($organismosEntidades)
-            ->editColumn('created_at', function ($OrganismosEntidades) {
-                return $OrganismosEntidades->created_at ? with(new Carbon($OrganismosEntidades->created_at))->format('d/m/Y') : '';
-            })
-            ->editColumn('updated_at', function ($OrganismosEntidades) {
-                return $OrganismosEntidades->updated_at ? with(new Carbon($OrganismosEntidades->updated_at))->format('d/m/Y') : '';
-            })
-            ->make();
+                        ->make();
 
     }
     /**

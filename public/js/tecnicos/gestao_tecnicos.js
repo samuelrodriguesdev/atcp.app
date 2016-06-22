@@ -6,15 +6,19 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: config.url+'/tecnicos/list',
-        "sDom": '<"top">rt<"bottom"ip><"clear">',
+        //"sDom": '<"top">rt<"bottom"ip><"clear">',
         "pagingType": "full",
         oLanguage: {
             sProcessing: ''
         },
         "columnDefs": [
         {
-            "targets": [ 0,3 ],
+            "targets": [ 3 ],
             "visible": false,
+        },
+        {
+            "targets": [ 0,2 ],
+            "className":"text-center",
         }
         ]
     });

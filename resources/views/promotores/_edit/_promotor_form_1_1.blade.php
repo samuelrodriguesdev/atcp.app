@@ -5,7 +5,7 @@
     <div class="form-group has-feedback col-md-6">
         <label for="promotor_estado">Estado</label>
         <select name="promotor_estado" id="promotor_estado" class="form-control" required="required" style="width: 100%">
-            <option value="1" {{ $promotor->promotor_estado == 1 ? 'selected' : '' }} >Pontencial</option>
+            <option value="1" {{ $promotor->promotor_estado == 1 ? 'selected' : '' }} >Potencial</option>
             <option value="2" {{ $promotor->promotor_estado == 2 ? 'selected' : '' }} >Activo</option>
             <option value="3" {{ $promotor->promotor_estado == 3 ? 'selected' : '' }} >Inactivo</option>
         </select>

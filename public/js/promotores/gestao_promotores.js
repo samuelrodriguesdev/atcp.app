@@ -7,6 +7,20 @@ $(document).ready(function() {
       	processing: true,
       	serverSide: true,
       	ajax: Url+'/promotores/data-table',
+        "columnDefs": [
+        {
+            "targets": [ 0 ],
+            "width": "10%",
+        },
+        {
+            "targets": [ 0,2,3 ],
+            "className":"text-center",
+        },
+        {
+            "targets": [ 2,3 ],
+            "width":"15%",
+        }
+        ]
       	//"sDom": '<"top">rt<"bottom"ip><"clear">',
    	});
    	promotoresTable.on( 'preXhr.dt', function () {

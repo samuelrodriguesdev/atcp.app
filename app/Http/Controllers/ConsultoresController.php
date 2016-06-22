@@ -24,8 +24,19 @@ class ConsultoresController extends Controller
     public function consultores()
     {
         $consultores = DB::table('consultores')
-        ->select(['consultores.id', 'consultores.nome', 'consultores.nif', 'consultores.created_at']);
+        ->select(['consultores.id', 'consultores.nome', 'consultores.localidade', 'consultores.estado_colaboracao']);
         return Datatables::of($consultores)
+        ->editColumn('estado_colaboracao', '{{ $estado_colaboracao == 1 ? "Activo" : "Inactivo" }}')
+        ->make();
+    }
+
+    public function contratos()
+    {
+        $consultores = DB::table('projecto_consultores')
+        ->select(['projecto_consultores.id', 'consultores.nome', 'projecto_consultores.data_inicio_servico', 'consultores.estado_colaboracao'])
+        ->leftJoin('consultores', 'projecto_consultores.consultor_id', '=', 'consultores.id');
+        return Datatables::of($consultores)
+        ->editColumn('estado_colaboracao', '{{ $estado_colaboracao == 1 ? "Activo" : "Inactivo" }}')
         ->make();
     }
 
@@ -41,11 +52,15 @@ class ConsultoresController extends Controller
         $consultor = Consultores::create($request->except(['consultor_email', 'contatos']));
         
         foreach ($request->input('consultor_email') as $email) { 
-            $contatos[] = new ConsultoresContatos($email);
+            if ($email['value']) {
+                $contatos[] = new ConsultoresContatos($email);
+            }
         }
 
        	foreach ($request->input('contatos') as $contato) { 
-            $contatos[] = new ConsultoresContatos($contato);
+            if ($contato['value']) {
+                $contatos[] = new ConsultoresContatos($contato);
+            }
         }
         
       
@@ -80,7 +95,7 @@ class ConsultoresController extends Controller
     public function update(Request $request, Consultores $consultor)
     {
         $consultor->update($request->except(['consultor_email', 'contatos']));
-        
+        $contatos=[];
         foreach ($request->input('consultor_email') as $email) {
         	if ($email['value']) { 
             	$contatos[] = new ConsultoresContatos($email);
@@ -96,10 +111,6 @@ class ConsultoresController extends Controller
         $consultor->contatos()->delete();
         $result = $consultor->contatos()->saveMany($contatos);
 
-        if (!$result) {
-           flash()->error('Ups, Ocorreu um Erro Tente Novamente Mais Tarde. Se o Problema Persistir, Contacte o Administrador!');
-           return redirect()->back();
-        }
 
         flash()->success('Registo Actualizado com Sucesso!');
         return redirect()->to('Consultores/Detalhes/'.$consultor->id);

@@ -3,14 +3,14 @@
 <div class="col-md-8 col-lg-7">
    <div class="box box-success" >
       <div class="box-header with-border">
-         <h3 class="box-title">DETALHES Organismo/Entidade</h3>
+         <h3 class="box-title">DETALHES Instituição</h3>
       </div>
       <form method="POST" action=" {{ URL('OrganismosEntidades/update') }}/{{ $OrganismosEntidades->id }}" accept-charset="UTF-8" id="organismo_entidade_form">
          {{ csrf_field() }}
          <div class="box-body">
             <div class="row">
                <div class="form-group  has-feedback col-md-8">
-                  <label for="nome">Organismo/Entidade</label>
+                  <label for="nome">Instituição</label>
                   <input type="text" name="nome" id="nome" class="form-control" required="required" value="{{ $OrganismosEntidades->nome }}">
                   <div class="help-block with-errors"></div>
                </div>

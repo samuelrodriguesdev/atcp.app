@@ -101,7 +101,7 @@
                                 <input type="radio" name="retencao_fonte" id="retencao_fonte" value="11.5">
                                 11.5%
                             </label>
-                             <label>
+                            <label>
                                 <input type="radio" name="retencao_fonte" id="retencao_fonte" value="0">
                                 Sem Retenção
                             </label>
@@ -109,12 +109,45 @@
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="certificacao">Estado de Certificação</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="certificacao" class="inputCertificacao" value="1" checked="checked">
+                                Sim
+                            </label>
+                            <label>
+                                <input type="radio" name="certificacao" class="inputCertificacao" value="0">
+                                Não
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback col-md-6">
+                        <label for="estado_colaboracao">Estado de Colaboração </label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="estado_colaboracao" class="inputCertificacao" value="1" checked="checked">
+                                Activo
+                            </label>
+                            <label>
+                                <input type="radio" name="estado_colaboracao" class="inputCertificacao" value="0">
+                                Inactivo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" >
+                    <label for="observacoes">Observações</label>
+                    <textarea name="observacoes" class="form-control" rows="3" style="resize:vertical;"></textarea>
+                </div>
                 <div class="row">
                     <div class="col-md-6" id="additional_email">
                         <div class="form-group has-feedback div_email">
                             <label for="Email">Email</label>
                             <div class="input-group">
-                            <input type="hidden" class="form-control" value="Email" name="consultor_email[0][type]">
+                                <input type="hidden" class="form-control" value="Email" name="consultor_email[0][type]">
                                 <input class="form-control" name="consultor_email[0][value]" type="text" id="consultor_email" />
                                 <span class="input-group-btn">
                                     <button class="btn btn-flat bg-green add_field" id="_email" type="button"><i class="fa fa-plus"></i></button>

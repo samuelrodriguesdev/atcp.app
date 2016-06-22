@@ -3,14 +3,14 @@
 <div class="col-md-8 col-lg-7">
    <div class="box box-success" >
       <div class="box-header with-border">
-         <h3 class="box-title">Novo Organismo/Entidade</h3>
+         <h3 class="box-title">Nova Instituição</h3>
       </div>
       <form method="POST" action="{{ URL('organismos_entidades/create') }}" accept-charset="UTF-8" id="organismo_entidade_form">
          {{ csrf_field() }}
          <div class="box-body">
             <div class="row">
                <div class="form-group  has-feedback col-md-8">
-                  <label for="nome">Organismo/Entidade</label>
+                  <label for="nome">Instituição</label>
                   <input type="text" name="nome" id="nome" class="form-control" required="required">
                   <div class="help-block with-errors"></div>
                </div>

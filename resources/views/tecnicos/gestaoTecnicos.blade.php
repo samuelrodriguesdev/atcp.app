@@ -10,10 +10,10 @@
       <div class="box-header">
          <h3 class="box-title">Técnicos</h3>
          <div class="box-tools pull-right">
-            <div class="has-feedback">
+            <!-- <div class="has-feedback">
                <input type="text" class="form-control input-sm" placeholder="Pesquisar">
                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-            </div>
+            </div> -->
          </div>
       </div>
       <div class="box-body table-responsive">
@@ -21,8 +21,8 @@
             <thead>
                <tr>
                   <th>Id</th>
-                  <th>Organismo/Entidade - Técnico</th>
-                  <th>Created At</th>
+                  <th>Instituição - Técnico</th>
+                  <th>Estado Colaboração</th>
                   <th></th>
                </tr>
             </thead>

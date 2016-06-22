@@ -21,7 +21,7 @@ class Consultores extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'morada', 'cp4', 'cp3', 'localidade', 'cc', 'cc_validade', 'nif', 'nib', 'hab_literarias', 'regime_iva', 'retencao_na_fonte'
+        'nome', 'morada', 'cp4', 'cp3', 'localidade', 'cc', 'cc_validade', 'nif', 'nib', 'hab_literarias', 'regime_iva', 'retencao_na_fonte','certificacao', 'estado_colaboracao', 'observacoes'
     ];
 
     /**

@@ -8,7 +8,7 @@
 <div class="col-md-8 col-lg-9">
    <div class="box box-success ">
       <div class="box-header with-border">
-         <h3 class="box-title">Organismos/Entidades</h3>
+         <h3 class="box-title">Instituições</h3>
          <div class="box-tools pull-right">
             <div class="has-feedback">
 
@@ -20,9 +20,8 @@
             <thead>
                <tr>
                   <th>Id</th>
-                  <th>Name</th>
-                  <th>Created At</th>
-                  <th>Updated At</th>
+                  <th>Instituição</th>
+                  <th>Localidade</th>
                </tr>
             </thead>
          </table>

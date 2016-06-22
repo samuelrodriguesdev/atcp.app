@@ -20,13 +20,13 @@
                 </div>
                 <div class="box-body no-padding">
                     <ul class="nav nav-pills nav-stacked nav-active">
-                        <li>
+                        <li class="{{ Request::segment(2) == "Gestao-de-Consultores" ? 'active' : ''  }}">
                             <a href="{{ URL::to('Consultores/Gestao-de-Consultores') }}" >
                                 <i class="fa fa-users"></i> 
                                 Consultores
                             </a>
                         </li>
-                         <li>
+                         <li class="{{ Request::segment(2) == "Gestao-de-Contratos" ? 'active' : ''  }}">
                             <a href="{{ URL::to('Consultores/Gestao-de-Contratos') }}" >
                                 <i class="fa fa-folder"></i> 
                                 Contratos

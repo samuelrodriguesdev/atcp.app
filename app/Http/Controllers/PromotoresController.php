@@ -26,13 +26,13 @@ class PromotoresController extends Controller
 {
 	public function tableData()
 	{
-	
+		$estados = [ 1 => 'Potencial', 2 => 'Activo', 3 => 'Inactivo'];
         $promotores = DB::table('promotores')
         ->leftJoin('projectos', 'promotores.id', '=', 'projectos.promotor_id')
         ->leftJoin('programas', 'projectos.programa_id', '=', 'programas.id')
-        ->select(['promotores.id', 'promotores.nome', 'programas.designacao', 'projectos.projecto_data_inicio']);
-        
-        return Datatables::of($promotores)->make();
+        ->select(['promotores.id', 'promotores.nome', 'programas.designacao', DB::raw('(CASE WHEN promotor_estado = 1 THEN "Potencial" WHEN promotor_estado = 2 THEN "Activo" WHEN promotor_estado = 3 THEN "Inactivo" ELSE "" END)')]);
+        return Datatables::of($promotores)
+        ->make();
     
 	}
 

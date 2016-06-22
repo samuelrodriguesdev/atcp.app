@@ -8,6 +8,12 @@ $(document).ready(function() {
       	serverSide: true,
       	ajax: Url+'/organismos_entidades/data-table',
       	"sDom": '<"top">rt<"bottom"ip><"clear">',
+        "columnDefs": [
+        {
+            "targets": [ 0 ],
+            "className":"text-center",
+        }
+        ]
    	});
    	organimosEntidadesTable.on( 'preXhr.dt', function () {
         $('div.overlay').css('visibility', 'visible');
@@ -17,6 +23,6 @@ $(document).ready(function() {
     });
     organimosEntidadesTable.on( 'click', 'tr', function () {
     	var data = organimosEntidadesTable.row( this ).data();
-    	window.location.href = Url+"/Organismos-Entidades/Detalhes/"+data[0]+"/";
+    	window.location.href = Url+"/Instituicoes/Detalhes/"+data[0]+"/";
     });
 });

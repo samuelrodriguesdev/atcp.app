@@ -294,7 +294,6 @@ $.ajax({
     });
 });
 
-
 var ppYear   = 2016;
 $.ajax({
     url: Url+'/estatistica/grafico4',
@@ -333,7 +332,7 @@ $.ajax({
             responsive: true,
             title: {
                 display: true,
-                text: 'Chart.js Horizontal Bar Chart'
+                text: 'Total por Programa'
             },
             scales: {
                 yAxes: [{
@@ -367,7 +366,7 @@ $.ajax({
                     data: results.data[i],
                 };
                 grafico4Config.data.datasets.push(newDataset);
-               
+
             }
             window.grafico4.update();
         })

@@ -19,7 +19,7 @@ class OrganismosEntidades extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'morada', 'cp4', 'cp3', 'distrito_id', 'localidade'
+        'nome', 'morada', 'cp4', 'cp3', 'distrito_id', 'localidade', 
     ];
 	
 	/**

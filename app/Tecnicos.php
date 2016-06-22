@@ -19,7 +19,7 @@ class Tecnicos extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'organismo_entidade_id',
+        'nome', 'organismo_entidade_id', 'funcoes_desempenhadas', 'estado_colaboracao', 'certificacao'
     ];
 
     /**

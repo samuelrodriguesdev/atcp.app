@@ -2,7 +2,7 @@
     <div class="form-group has-feedback col-md-6">
         <label for="promotor_estado">Estado</label>
         <select name="promotor_estado" id="promotor_estado" class="form-control" style="width: 100%">
-            <option value="1">Pontencial</option>
+            <option value="1">Potencial</option>
             <option value="2">Activo</option>
             <option value="3">Inactivo</option>
         </select>

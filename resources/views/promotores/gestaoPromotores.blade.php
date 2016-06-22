@@ -22,7 +22,7 @@
                   <th>Id</th>
                   <th>Promotor</th>
                   <th>Programa</th>
-                  <th>created at</th>
+                  <th>Estado</th>
                </tr>
             </thead>
          </table>

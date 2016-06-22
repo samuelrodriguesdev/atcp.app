@@ -20,8 +20,8 @@
                <tr>
                   <th>Id</th>
                   <th>Nome</th>
-                  <th>Nif</th>
-                  <th>Created At</th>
+                  <th>Localidade</th>
+                  <th>Estado Colaboração</th>
                </tr>
             </thead>
          </table>

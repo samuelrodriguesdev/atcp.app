@@ -48,15 +48,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// Routes para Organimsos
 
-	Route::get('/Organismos-Entidades/Detalhes/{OrganismosEntidades}', 'OrganismosEntidadesController@show');
+	Route::get('/Instituicoes/Detalhes/{OrganismosEntidades}', 'OrganismosEntidadesController@show');
 	
 	Route::post('/OrganismosEntidades/update/{OrganismosEntidades}', 'OrganismosEntidadesController@update');
 
-	Route::get('/Tecnicos/Gestao-de-Organismos-Entidades', function() {
+	Route::get('/Tecnicos/Gestao-de-Instituicoes', function() {
 		return View::make('organismos_entidades/GestaoOrganismosEntidades');
 	});
 
-	Route::get('/Tecnicos/Novo-Organismo-Entidade', function() {
+	Route::get('/Tecnicos/Nova-Instituicao', function() {
 		return View::make('organismos_entidades/NovoOrganismoEntidade');
 	});
 
@@ -84,7 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/Consultores/Detalhes/{consultor}', 'ConsultoresController@show');
 	Route::post('consultores/update/{consultor}', 'ConsultoresController@update');
 	Route::get('consultores/list', 'ConsultoresController@consultores');
-	
+	Route::get('consultores/contratos', 'ConsultoresController@contratos');
 	// Routes para os Promotores
 	
 	Route::get('/Promotores/', function() {

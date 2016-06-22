@@ -48,11 +48,18 @@ class ProjectoConsultor extends Model
      */
     public function setDataInicioServicoAttribute($value)
     {
+        if($value != '')
+        {
         $this->attributes['data_inicio_servico'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
+        }
+        
     }
     public function getDataInicioServicoAttribute($value)
     {
-        return Carbon::parse($value)->format('d-m-Y');
+        if($value != '')
+        {
+            return Carbon::parse($value)->format('d-m-Y');
+        }
     }
 
     /**
@@ -61,10 +68,17 @@ class ProjectoConsultor extends Model
      */
     public function setDataFimServicoAttribute($value)
     {
-        $this->attributes['data_fim_servico'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
+        if($value != '')
+        {
+        $this->attributes['data_fim_servico'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();  
+        }
+        
     }
     public function getDataFimServicoAttribute($value)
     {
-        return Carbon::parse($value)->format('d-m-Y');
+        if($value != '')
+        {
+            return Carbon::parse($value)->format('d-m-Y');
+        }
     }
 }

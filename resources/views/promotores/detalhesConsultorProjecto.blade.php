@@ -101,6 +101,7 @@
         <button id="updateConsultor" type="submit" class="btn btn-primary btn-flat">Guardar</button>
     </div>
 </form> 
+<?php $mte = App\Projectos::find($contrato->projecto_id)->montante_total_elegivel;?>
 <script type="text/javascript">
 
     $('#updateConsultor').click(function(e) {
@@ -144,7 +145,8 @@
 
     $('#percentagem_elaboracao_candidatura').keyup(function(e) {
         var e = this.value;
-        $(this).closest('.row').find('input:last').val(((e/100)*((419.22)*(2.5))).toFixed(2));
+        var mte = <?=$mte?>;
+        $(this).closest('.row').find('input:last').val(((e/100)*((mte)*(2.5))).toFixed(2));
     });
 
     function formatOption (option) {

@@ -5,21 +5,21 @@ $(document).ready(function() {
         },
         processing: true,
         serverSide: true,
-        ajax: config.url+'/consultores/list',
+        ajax: config.url+'/consultores/contratos',
         "sDom": '<"top">rt<"bottom"ip><"clear">',
         "pagingType": "full",
         "columnDefs": [
         {
-            "targets": [ 0,2,3 ],
+            "targets": [ 2,3 ],
             "className":"text-center",
         },
         {
-            "targets": [ 2,3 ],
-            "width":"15%",
+            "targets": [ 0 ],
+            "visible": false,
         },
         {
-            "targets": [ 0 ],
-            "width":"10%",
+            "targets": [ 2,3 ],
+            "width":"25%",
         }
         ],
         oLanguage: {

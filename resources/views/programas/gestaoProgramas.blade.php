@@ -8,7 +8,7 @@
 <div class="col-md-8 col-lg-9">
    <div class="box box-success ">
       <div class="box-header with-border">
-         <h3 class="box-title">Consultores</h3>
+         <h3 class="box-title">Programas</h3>
          <div class="box-tools pull-right">
             <div class="has-feedback">
             </div>
@@ -19,7 +19,7 @@
             <thead>
                <tr>
                   <th>Id</th>
-                  <th>Nome</th>
+                  <th>Designação</th>
                   <th>Created At</th>
                </tr>
             </thead>

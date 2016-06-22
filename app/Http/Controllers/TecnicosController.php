@@ -28,10 +28,11 @@ class TecnicosController extends Controller
     {
         $tecnicos = DB::table('tecnicos')
         ->leftJoin('organismos_entidades', 'tecnicos.organismo_entidade_id', '=', 'organismos_entidades.id')
-        ->select(['tecnicos.id', 'tecnicos.nome as tecnico', 'tecnicos.created_at', 'organismos_entidades.nome as organismo']);
+        ->select(['tecnicos.id', 'tecnicos.nome as tecnico', 'tecnicos.estado_colaboracao', 'organismos_entidades.nome as organismo']);
         
         return Datatables::of($tecnicos)
         ->editColumn('tecnico', '<b> [ {{ $organismo }} ] </b> - {{ $tecnico }}')
+        ->editColumn('estado_colaboracao', '{{ $estado_colaboracao == 1 ? "Activo" : "Inactivo" }}')
         ->make();
     }
 
@@ -44,10 +45,7 @@ class TecnicosController extends Controller
     public function create(Request $request)
     {
         $data = $request->all();
-        $tecnico = Tecnicos::create([
-            'nome'                  => $data['nome'],
-            'organismo_entidade_id' => $data['organismo_entidade_id']
-        ]);
+        $tecnico = Tecnicos::create($request->all());
         $contatos = [];
         for ($i=0; $i < count($data['contatos']); $i++) { 
             if ($data['contatos'][$i]['value']) {

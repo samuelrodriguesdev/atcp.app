@@ -10,7 +10,7 @@
    <div class="row">
       <div class="col-md-4 col-lg-3">
          <a href="{{ URL::to('Tecnicos/Novo-Tecnico') }}" class="btn btn-flat bg-green btn-block margin-bottom">Novo Técnico</a>
-         <a href="{{ URL::to('Tecnicos/Novo-Organismo-Entidade') }}" class="btn btn-flat bg-green btn-block margin-bottom">Novo Organismo/Entidade</a>
+         <a href="{{ URL::to('Tecnicos/Nova-Instituicao') }}" class="btn btn-flat bg-green btn-block margin-bottom">Nova Instituição</a>
          <div class="box box-success">
             <div class="box-header with-border">
                <h3 class="box-title">Folders</h3>
@@ -23,10 +23,10 @@
                         Técnicos
                      </a>
                   </li>
-                  <li class="{{ Request::segment(2) == "Gestao-de-Organismos-Entidades" ? 'active' : ''  }}">
-                     <a href="{{ URL::to('/Tecnicos/Gestao-de-Organismos-Entidades') }}">
+                  <li class="{{ Request::segment(2) == "Gestao-de-Instituicoes" ? 'active' : ''  }}">
+                     <a href="{{ URL::to('/Tecnicos/Gestao-de-Instituicoes') }}">
                         <i class="fa fa-university"></i> 
-                        Organismos/Entidades
+                        Instituições
                      </a>
                   </li>
                </ul>

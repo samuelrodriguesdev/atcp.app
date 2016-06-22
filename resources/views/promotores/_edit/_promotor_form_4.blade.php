@@ -20,7 +20,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#pedidoPagamento{{ $pp->id }}" aria-expanded="false" class="collapsed">
-                            {{ $pp->data_pedido_pagamento }}
+                            {{ 'P.P'.Carbon\Carbon::parse($pp->data_pedido_pagamento)->quarter.'º/'.Carbon\Carbon::parse($pp->data_pedido_pagamento)->year }}
                         </a>
                     </h3>
                     <div class="btn-group pull-right">

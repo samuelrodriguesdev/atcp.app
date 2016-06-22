@@ -39,11 +39,17 @@ class ProjectoPP extends Model
      */
     public function setDataPedidoPagamentoAttribute($value)
     {
+        if($value != '')
+        {
         $this->attributes['data_pedido_pagamento'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
+        }
     }
     public function getDataPedidoPagamentoAttribute($value)
     {
-        return Carbon::parse($value)->format('d-m-Y');
+        if($value != '')
+        {
+            return Carbon::parse($value)->format('d-m-Y');
+        }
     }
 
       /**
@@ -52,10 +58,16 @@ class ProjectoPP extends Model
      */
     public function setDataRecebimentoPagamentoAttribute($value)
     {
+        if($value != '')
+        {
         $this->attributes['data_recebimento_pagamento'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
+        }
     }
     public function getDataRecebimentoPagamentoAttribute($value)
     {
-        return Carbon::parse($value)->format('d-m-Y');
+        if($value != '')
+        {
+            return Carbon::parse($value)->format('d-m-Y');
+        }
     }
 }

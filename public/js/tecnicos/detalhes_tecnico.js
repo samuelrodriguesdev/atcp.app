@@ -1,5 +1,10 @@
 $(document).ready(function() {
-
+   $('.inputCertificacao').iCheck({
+      checkboxClass : 'icheckbox_flat-green',
+      radioClass    : 'iradio_flat-green',
+      increaseArea  : '20%' 
+   });
+   
    $( '#tecnico_form' ).validator();
 
    $( '#organismo_entidade_id' ).select2({

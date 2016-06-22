@@ -13,14 +13,14 @@
 <section class="content">
     <div class="row">
         <div class="col-md-4 col-lg-3">
-            <a href="{{ URL::to('Promotores/Novo-Promotor') }}" class="btn btn-flat bg-green btn-block margin-bottom sub_link">Novo Promotor/Projeto</a>
+            <a href="{{ URL::to('Promotores/Novo-Promotor') }}" class="btn btn-flat bg-green btn-block margin-bottom sub_link">Novo Promotor</a>
             <div class="box box-success">
                 <div class="box-body no-padding">
                     <ul class="nav nav-pills nav-stacked nav-active">
                         <li class="{{ Request::segment(2) == "Gestao-de-Promotores" ? 'active' : ''  }}" >
                             <a href="{{ URL::to('Promotores/Gestao-de-Promotores') }}" >
                                 <i class="fa fa-building"></i>
-                                Promotores/Projectos
+                                Promotores
                             </a>
                         </li>
                     </ul>
