@@ -158,7 +158,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\HelperServiceProvider::class,
     ],
 
     /*
@@ -207,6 +207,7 @@ return [
         'Flash'      => Laracasts\Flash\Flash::class,
         'Debugbar'   => Barryvdh\Debugbar\Facade::class,
         'Entrust'    => Zizaco\Entrust\EntrustFacade::class,
+        'Helper'     => App\Helpers\Helper::class,
     ],
 
 ];

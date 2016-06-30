@@ -12,7 +12,9 @@
  <link href="{{ asset("compiled/css/app.css") }}" rel="stylesheet" type="text/css"/>
  <!-- Font Awesome -->
  <link href="{{ asset("theme/plugins/font-awesome-4.5.0/css/font-awesome.min.css") }}" rel="stylesheet" type="text/css"/>
- 
+ <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+
+
  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -42,6 +44,7 @@
    <!-- ./wrapper -->
 
    <script src="{{ asset("compiled/js/app.js") }}"></script>
+   <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button);
   </script>

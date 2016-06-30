@@ -20,9 +20,6 @@
         "zizaco/entrust": "dev-laravel-5"
     },
     "autoload": {
-        "files": [
-            "app/Helpers/Helper.php"
-        ],
         "classmap": [
             "database"
         ],

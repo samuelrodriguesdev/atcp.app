@@ -14,12 +14,6 @@
                 <input type="text" name="data_pedido_pagamento" class="form-control date" value="{{ $pp->data_pedido_pagamento }}" required>
             </div>
             <div class="form-group has-feedback col-md-6">
-                <label for="data_recebimento_pagamento">Data Recebimento P.P</label>
-                <input type="text" name="data_recebimento_pagamento" class="form-control date" value="{{ $pp->data_recebimento_pagamento }}" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group has-feedback col-md-5">
                 <label for="valor_pedido_pagamento">Valor P.P</label>
                 <input type="text" name="valor_pedido_pagamento" id="valor_pedido_pagamento" class="form-control" value="{{ $pp->valor_pedido_pagamento }}" required>
             </div>

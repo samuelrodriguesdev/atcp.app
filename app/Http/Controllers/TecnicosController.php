@@ -16,6 +16,8 @@ use Carbon\Carbon;
 
 use App\TecnicosContatos;
 
+use App\Helpers\Helper;
+
 class TecnicosController extends Controller
 {
 
@@ -31,9 +33,9 @@ class TecnicosController extends Controller
         ->select(['tecnicos.id', 'tecnicos.nome as tecnico', 'tecnicos.estado_colaboracao', 'organismos_entidades.nome as organismo']);
         
         return Datatables::of($tecnicos)
-        ->editColumn('tecnico', '<b> [ {{ $organismo }} ] </b> - {{ $tecnico }}')
-        ->editColumn('estado_colaboracao', '{{ $estado_colaboracao == 1 ? "Activo" : "Inactivo" }}')
-        ->make();
+            ->editColumn('tecnico', '<b> [ {{ Helper::sigla_generator($organismo) }} ] </b> - {{ $tecnico }}')
+            ->editColumn('estado_colaboracao', '{{ $estado_colaboracao == 1 ? "Activo" : "Inactivo" }}')
+            ->make();
     }
 
     /**

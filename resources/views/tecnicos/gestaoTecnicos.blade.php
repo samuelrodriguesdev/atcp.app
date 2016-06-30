@@ -10,10 +10,6 @@
       <div class="box-header">
          <h3 class="box-title">Técnicos</h3>
          <div class="box-tools pull-right">
-            <!-- <div class="has-feedback">
-               <input type="text" class="form-control input-sm" placeholder="Pesquisar">
-               <span class="glyphicon glyphicon-search form-control-feedback"></span>
-            </div> -->
          </div>
       </div>
       <div class="box-body table-responsive">
@@ -31,6 +27,8 @@
       <div class="overlay" style="visibility: visible;"><i class="fa fa-spinner fa-spin"></i></div>
    </div>
 </div>
+
+
 @endsection
 @section('javascript')
 <script src="{{ asset("js/tecnicos/gestao_tecnicos.js") }}"></script>
