@@ -27,8 +27,7 @@
       <div class="overlay" style="visibility: visible;"><i class="fa fa-spinner fa-spin"></i></div>
    </div>
 </div>
-
-
+@include('_partials.confirmationDialog')
 @endsection
 @section('javascript')
 <script src="{{ asset("js/tecnicos/gestao_tecnicos.js") }}"></script>

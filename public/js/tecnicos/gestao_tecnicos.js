@@ -33,18 +33,21 @@ $(document).ready(function() {
         var data = tecnicosTable.row( this ).data();
         window.location.href = config.url+"/Tecnicos/Detalhes/"+data[0]+"/";
     });
-
+    var toDeleteId;
     $.contextMenu({
         selector: '#tecnicos-table tbody tr', 
         callback: function(key, options) {
             var data = tecnicosTable.row( this ).data();
-   
+                toDeleteId = data[0];
+
             switch (key) {
                 case 'view':
                     window.location.href = config.url+"/Tecnicos/Detalhes/"+data[0]+"/";   
                 break;
                 case 'delete':
-                    confirm("Press a button! to delete"+data[1]);
+                    $('#deleteLabel').html(data[1]);
+               
+                    $('.modal').modal();
                 break;
             }
         },
@@ -58,8 +61,20 @@ $(document).ready(function() {
         }
     });
 
-    $('.context-menu-one').on('click', function(e){
-        console.log('clicked', this);
-    }); 
+    $('#confirmationBtn').click(function(e) {
+        e.preventDefault();
+        $.$.ajax({
+            url: '/path/to/file',
+            type: 'POST',
+            dataType: 'json',
+            data: { 'toDeleteId' :  toDeleteId },
+        })
+        .done(function() {
+            console.log("success");
+        });
+        
+        
+       
+    });
 
-});
+}); 
