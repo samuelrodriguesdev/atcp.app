@@ -19,6 +19,10 @@ $(document).ready(function() {
         {
             "targets": [ 2,3 ],
             "width":"15%",
+        },
+        {
+            "targets": [ 3 ],
+            "bSearchable": false,
         }
         ]
       	//"sDom": '<"top">rt<"bottom"ip><"clear">',

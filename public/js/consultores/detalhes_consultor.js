@@ -48,5 +48,6 @@ $(document).ready(function(){
         $(this).closest('div.div_contato').find('.contato_tipo').val(selected);
         $(this).closest('div.div_contato').find('.dropdown_text').text(selected);
     });
-       
+     
+
 });
