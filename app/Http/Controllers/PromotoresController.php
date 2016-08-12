@@ -153,4 +153,18 @@ class PromotoresController extends Controller
         }
         flash()->success('P.P Actualizado com Sucesso!');
 	}
+
+	public function ProjectoConsultorDelete(ProjectoConsultor $contrato)
+	{
+		$contrato->delete();
+        flash()->success('Registo Eliminado com Sucesso!');
+        return redirect()->back();
+	}
+
+	public function ProjectoPPDelete(ProjectoPP $pp)
+	{
+		$pp->delete();
+        flash()->success('P.P Eliminado com Sucesso!');
+        return redirect()->back();
+	}
 }

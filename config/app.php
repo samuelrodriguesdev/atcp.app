@@ -151,6 +151,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -208,6 +209,7 @@ return [
         'Debugbar'   => Barryvdh\Debugbar\Facade::class,
         'Entrust'    => Zizaco\Entrust\EntrustFacade::class,
         'Helper'     => App\Helpers\Helper::class,
+        'Excel'      => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

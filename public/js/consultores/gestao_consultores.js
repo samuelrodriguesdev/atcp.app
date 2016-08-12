@@ -36,4 +36,32 @@ $(document).ready(function() {
         var data = consultoresTable.row( this ).data();
         window.location.href = config.url+"/Consultores/Detalhes/"+data[0]+"/";
     });
+
+    var toDeleteId;
+    $.contextMenu({
+        selector: '#consultores-table tbody tr', 
+        callback: function(key, options) {
+            var data = consultoresTable.row( this ).data();
+                toDeleteId = data[0];
+
+            switch (key) {
+                case 'view':
+                    window.location.href = config.url+"/Consultores/Detalhes/"+data[0]+"/";   
+                break;
+                case 'delete':
+                    $('#deleteLabel').html(data[1]);
+                    $('#confirmationBtn').attr('href', config.url+"/Consultores/Delete/"+data[0]+"/");
+                    $('.modal').modal();
+                break;
+            }
+        },
+        items: {
+            "view": {name: "Ver", icon: "edit"},
+            "delete": {name: "Apagar", icon: "delete"},
+            "sep1": "---------",
+            "quit": {name: "Sair", icon: function(){
+                return 'context-menu-icon context-menu-icon-quit';
+            }}
+        }
+    });
 });

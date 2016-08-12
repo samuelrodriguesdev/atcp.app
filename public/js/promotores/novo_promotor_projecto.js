@@ -257,7 +257,7 @@ $(document).ready(function() {
         function calcPlafond(months) {
             if (months) {
                 var total;
-                total = (months/24)*(6*ias)*0.4+(0.6*6*ias);
+                total = (months/24)*(8*ias)*0.4+(0.6*8*ias);
                 return total.toFixed(2);
             }
         }

@@ -6,7 +6,7 @@
 </style>
 <div class="box box-default">
     <div class="box-header with-border">
-        <h3 class="box-title"></h3>
+        <h3 class="box-title">&nbsp;</h3>
         <div class="box-tools pull-right">
             <div class="has-feedback">
                 <a data-toggle="modal" href="{{ url('projecto/novo_pedido_pagamento/'.$promotor->projecto->id) }}" data-target="#novoPP" class="btn btn-block bg-green btn-flat btn-sm">Adicionar P.P</a>
@@ -28,12 +28,12 @@
                             <i class="fa fa-pencil">
                             </i>
                         </a> 
-                        <a class="btn btn-flat btn-danger btn-sm">
+                        <a class="btn btn-flat btn-danger btn-sm delete-pp" data-href="{{ url('projecto/pp-delete/'.$pp->id) }}">
                             <i class="fa fa-trash">
                             </i>
                         </a>
-                </div>  
-            </div>
+                    </div>  
+                </div>
             <div id="pedidoPagamento{{ $pp->id }}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                 <div class="box-body">
                     <div class="row">

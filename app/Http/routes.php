@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('tecnicos/create', 'TecnicosController@create');
 
+	Route::get('Tecnicos/Delete/{tecnico}', 'TecnicosController@delete');
+
 	// Routes para Organimsos
 
 	Route::get('/Instituicoes/Detalhes/{OrganismosEntidades}', 'OrganismosEntidadesController@show');
@@ -64,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('Organismos-Entidades/select2List', 'OrganismosEntidadesController@select2List');
 
 	Route::post('organismos_entidades/create', 'OrganismosEntidadesController@create');
-	
+	Route::get('OrganismosEntidades/Delete/{OrganismosEntidades}', 'OrganismosEntidadesController@delete');
 	// Routes para os Consultores
 
 	Route::get('/Consultores/', function() {
@@ -85,6 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('consultores/update/{consultor}', 'ConsultoresController@update');
 	Route::get('consultores/list', 'ConsultoresController@consultores');
 	Route::get('consultores/contratos', 'ConsultoresController@contratos');
+
+	Route::get('Consultores/Delete/{consultor}', 'ConsultoresController@delete');
 	// Routes para os Promotores
 	
 	Route::get('/Promotores/', function() {
@@ -120,7 +124,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('projecto/post_consultor', 'PromotoresController@ProjectoConsultor');
 	Route::post('projecto/update_consultor/{contrato}', 'PromotoresController@ProjectoConsultorUpdate');
 	Route::post('projecto/post_pedido_pagamento', 'PromotoresController@ProjectoPP');
-	Route::post('projecto/update_pedido_pagamento{pp}', 'PromotoresController@ProjectoPPUpdate');
+	Route::post('projecto/update_pedido_pagamento/{pp}', 'PromotoresController@ProjectoPPUpdate');
+	Route::get('projecto/pp-delete/{pp}', 'PromotoresController@ProjectoPPDelete');
+	
+	Route::get('projecto/delete-consultor/{contrato}', 'PromotoresController@ProjectoConsultorDelete');
 	// programas routes
 	
 	Route::get('/Programas/Novo-Programa', function() {
@@ -158,6 +165,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('estatistica/grafico2', 'EstatisticaController@total_por_estado');
 	Route::get('estatistica/grafico3', 'EstatisticaController@total_por_apoio');
 	Route::get('estatistica/grafico4', 'EstatisticaController@total_por_programa_centro');
+
+
+	//EXCEL OUTPUTS
+	Route::get('/Outputs', function() {
+		return View::make('outputs/outputs');
+	});
+
+	Route::get('Outputs/export', 'OutputController@testexcel');
 });
 
 

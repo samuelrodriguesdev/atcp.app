@@ -58,15 +58,15 @@ return array(
     ),
 
     'properties' => array(
-        'creator'        => 'Maatwebsite',
-        'lastModifiedBy' => 'Maatwebsite',
-        'title'          => 'Spreadsheet',
-        'description'    => 'Default spreadsheet export',
-        'subject'        => 'Spreadsheet export',
-        'keywords'       => 'maatwebsite, excel, export',
-        'category'       => 'Excel',
-        'manager'        => 'Maatwebsite',
-        'company'        => 'Maatwebsite',
+        'creator'        => 'Conclusão Estudos e Formação',
+        'lastModifiedBy' => 'Conclusão Estudos e Formação',
+        'title'          => 'Conclusão Estudos e Formação',
+        'description'    => 'Conclusão Estudos e Formação',
+        'subject'        => 'Conclusão Estudos e Formação',
+        'keywords'       => 'Conclusão Estudos e Formação',
+        'category'       => 'Conclusão Estudos e Formação',
+        'manager'        => 'Conclusão Estudos e Formação',
+        'company'        => 'Conclusão Estudos e Formação',
     ),
 
     /*
@@ -106,7 +106,7 @@ return array(
     |
     */
 
-    'creator'    => 'Maatwebsite',
+    'creator'    => 'Conclusão Estudos e Formação',
 
     'csv'        => array(
         /*

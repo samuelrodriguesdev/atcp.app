@@ -27,6 +27,7 @@
     </form>
 </div>
 @endsection
+@include('_partials.confirmationDialog')
 @section('javascript')
 <script type="text/javascript">
     var ias = "{{ DB::table('app_vars')->where('name', 'IAS')->value('value') }}";

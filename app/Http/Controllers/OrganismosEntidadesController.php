@@ -29,7 +29,8 @@ class OrganismosEntidadesController extends Controller
     public function anyData() 
     {
         $organismosEntidades = DB::table('organismos_entidades')
-                                ->select(['id', 'nome', 'localidade']);
+                                ->select(['id', 'nome', 'localidade'])
+                                ->whereNull('deleted_at');
         return Datatables::of($organismosEntidades)
                         ->make();
 
@@ -130,14 +131,10 @@ class OrganismosEntidadesController extends Controller
         return redirect()->back(); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete(OrganismosEntidades $OrganismosEntidades)
     {
-       
+        $OrganismosEntidades->delete();
+        flash()->success('Registo Eliminado com Sucesso!');
+        return redirect()->back();
     }
 }

@@ -46,7 +46,7 @@ $(document).ready(function() {
                 break;
                 case 'delete':
                     $('#deleteLabel').html(data[1]);
-               
+                    $('#confirmationBtn').attr('href', config.url+"/Tecnicos/Delete/"+data[0]+"/");
                     $('.modal').modal();
                 break;
             }
@@ -59,22 +59,6 @@ $(document).ready(function() {
                 return 'context-menu-icon context-menu-icon-quit';
             }}
         }
-    });
-
-    $('#confirmationBtn').click(function(e) {
-        e.preventDefault();
-        $.$.ajax({
-            url: '/path/to/file',
-            type: 'POST',
-            dataType: 'json',
-            data: { 'toDeleteId' :  toDeleteId },
-        })
-        .done(function() {
-            console.log("success");
-        });
-        
-        
-       
     });
 
 }); 

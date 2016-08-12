@@ -30,8 +30,8 @@ class TecnicosController extends Controller
     {
         $tecnicos = DB::table('tecnicos')
         ->leftJoin('organismos_entidades', 'tecnicos.organismo_entidade_id', '=', 'organismos_entidades.id')
-        ->select(['tecnicos.id', 'tecnicos.nome as tecnico', 'tecnicos.estado_colaboracao', 'organismos_entidades.nome as organismo']);
-        
+        ->select(['tecnicos.id', 'tecnicos.nome as tecnico', 'tecnicos.estado_colaboracao', 'organismos_entidades.nome as organismo'])
+        ->whereNull('tecnicos.deleted_at');
         return Datatables::of($tecnicos)
             ->editColumn('tecnico', '<b> [ {{ Helper::sigla_generator($organismo) }} ] </b> - {{ $tecnico }}')
             ->editColumn('estado_colaboracao', '{{ $estado_colaboracao == 1 ? "Activo" : "Inactivo" }}')
@@ -136,14 +136,10 @@ class TecnicosController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete(Tecnicos $tecnico)
     {
-        //
+        $tecnico->delete();
+        flash()->success('Registo Eliminado com Sucesso!');
+        return redirect()->back();
     }
 }

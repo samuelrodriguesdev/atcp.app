@@ -26,6 +26,9 @@ class Consultores extends Migration
             $table->enum('hab_literarias', ['Bacharelato', 'Licenciatura', 'Mestrado', 'Doutoramento', 'Pós-Doutoramento']);
             $table->integer('regime_iva');
             $table->enum('retencao_na_fonte', ['0', '11.5', '16.5', '20', '25']);
+            $table->integer('certificacao');
+            $table->integer('estado_colaboracao');
+            $table->text('observacoes');
             $table->timestamps();
             $table->softDeletes();
         });

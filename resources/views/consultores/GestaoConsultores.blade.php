@@ -30,6 +30,7 @@
    </div>
 </div>
 @endsection
+@include('_partials.confirmationDialog')
 @section('javascript')
 <script src="{{ asset("js/consultores/gestao_consultores.js") }}"></script>
 @endsection

@@ -93,7 +93,7 @@ $(document).ready(function() {
         var apoio = $(this).attr('data-value'), 
         programa = $('#programa_id').val();
         $('#apoio_'+apoio).toggle();
-       
+
         $.ajax({
             url: config.url+'/select/programa_documentos',
             dataType: "json",
@@ -120,7 +120,7 @@ $(document).ready(function() {
     });
 
     $( '#angariador_id' ).select2({
-        
+
         ajax: {
             url: config.url+'/select/lista_consultores',
             dataType: 'json',
@@ -136,7 +136,7 @@ $(document).ready(function() {
     });
 
     $( '#centro_emprego_id' ).select2({
-        
+
         ajax: {
             url: config.url+'/select/lista_organismos',
             dataType: 'json',
@@ -254,7 +254,7 @@ $(document).ready(function() {
         function calcPlafond(months) {
             if (months) {
                 var total;
-                total = (months/24)*(6*ias)*0.4+(0.6*6*ias);
+                total = (months/24)*(8*ias)*0.4+(0.6*8*ias);
                 return total.toFixed(2);
             }
         }
@@ -265,6 +265,17 @@ $(document).ready(function() {
         $('#numero_meses').val(months <= 0 ? 0 : months);
         $('#montante_total_elegivel').val(total <= 0 ? 0 : total);
     });
- 
+
+    $('.delete-consultor').click(function(e) {
+        e.preventDefault();
+        $('#confirmationBtn').attr('href', $(this).attr('data-href') );
+        $('#confirmationDialog').modal();
+    });
+
+    $('.delete-pp').click(function(e) {
+        e.preventDefault();
+        $('#confirmationBtn').attr('href', $(this).attr('data-href') );
+        $('#confirmationDialog').modal();
+    });
 
 });

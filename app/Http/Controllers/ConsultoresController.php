@@ -24,7 +24,8 @@ class ConsultoresController extends Controller
     public function consultores()
     {
         $consultores = DB::table('consultores')
-        ->select(['consultores.id', 'consultores.nome', 'consultores.localidade', 'consultores.estado_colaboracao']);
+        ->select(['consultores.id', 'consultores.nome', 'consultores.localidade', 'consultores.estado_colaboracao'])
+        ->whereNull('deleted_at');
         return Datatables::of($consultores)
         ->editColumn('estado_colaboracao', '{{ $estado_colaboracao == 1 ? "Activo" : "Inactivo" }}')
         ->make();
@@ -116,14 +117,10 @@ class ConsultoresController extends Controller
         return redirect()->to('Consultores/Detalhes/'.$consultor->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete(Consultores $consultor)
     {
-        //
+        $consultor->delete();
+        flash()->success('Registo Eliminado com Sucesso!');
+        return redirect()->back();
     }
 }

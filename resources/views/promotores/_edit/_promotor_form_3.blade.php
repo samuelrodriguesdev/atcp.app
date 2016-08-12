@@ -6,7 +6,7 @@
 </style>
 <div class="box box-default">
     <div class="box-header with-border">
-        <h3 class="box-title"></h3>
+        <h3 class="box-title">&nbsp;</h3>
         <div class="box-tools pull-right">
             <div class="has-feedback">
                 <a data-toggle="modal" href="{{ url('projecto/novo_consultor/'.$promotor->projecto->id) }}" data-target="#myModal" class="btn btn-block bg-green btn-flat btn-sm">Adicionar Consultor</a>
@@ -28,7 +28,7 @@
                             <i class="fa fa-pencil">
                             </i>
                         </a> 
-                        <a class="btn btn-flat btn-danger btn-sm">
+                        <a data-href="{{ url('projecto/delete-consultor/'.$contrato->id) }}" class="btn btn-flat btn-danger btn-sm delete-consultor">
                             <i class="fa fa-trash">
                             </i>
                         </a>
