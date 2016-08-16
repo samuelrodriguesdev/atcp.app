@@ -172,7 +172,8 @@ Route::group(['middleware' => 'auth'], function () {
 		return View::make('outputs/outputs');
 	});
 
-	Route::get('Outputs/export', 'OutputController@testexcel');
+	Route::get('output/pedidosPagamento/', 'OutputController@pedidosPagamento');
+	Route::get('output/consultores/', 'OutputController@consultores');
 });
 
 

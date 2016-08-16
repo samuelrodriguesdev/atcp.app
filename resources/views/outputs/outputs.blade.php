@@ -65,9 +65,9 @@
                 <div class="col-md-2 col-lg-2">
                     <div class="form-group has-feedback">
                         <label for="1trimestre">&nbsp;</label>
-                        <div class="radio">
+                        <div class="checkbox">
                             <label>
-                                <input type="radio" name="trimestres" id="1trimestre" value="1" checked> 
+                                <input type="checkbox" name="trimestres[]" id="1trimestre" value="1"> 
                                 1º Trimestre
                             </label>
                         </div>
@@ -76,9 +76,9 @@
                 <div class="col-md-2 col-lg-2">
                     <div class="form-group has-feedback">
                         <label for="2trimestre">&nbsp;</label>
-                        <div class="radio">
+                        <div class="checkbox">
                             <label>
-                                <input type="radio" name="trimestres" id="2trimestre" value="2"> 
+                                <input type="checkbox" name="trimestres[]" id="2trimestre" value="2"> 
                                 2º Trimestre
                             </label>
                         </div>
@@ -86,10 +86,10 @@
                 </div>
                 <div class="col-md-2 col-lg-2">
                     <div class="form-group has-feedback">
-                    <label  for="3trimestre">&nbsp;</label>
-                        <div class="radio">
+                        <label  for="3trimestre">&nbsp;</label>
+                        <div class="checkbox">
                             <label>
-                                <input type="radio" name="trimestres" id="3trimestre" value="3"> 
+                                <input type="checkbox" name="trimestres[]" id="3trimestre" value="3"> 
                                 3º Trimestre
                             </label>
                         </div>
@@ -98,9 +98,9 @@
                 <div class="col-md-2 col-lg-2">
                     <div class="form-group has-feedback">
                         <label for="4trimestre">&nbsp;</label>
-                        <div class="radio">
+                        <div class="checkbox">
                             <label>
-                                <input type="radio" name="trimestres" id="4trimestre" value="4"> 
+                                <input type="checkbox" name="trimestres[]" id="4trimestre" value="4"> 
                                 4º Trimestre
                             </label>
                         </div>
@@ -117,7 +117,6 @@
             </div>
         </div>
         <div class="box-body">
-            The body of the box
         </div>
     </div>
     <div class="box">

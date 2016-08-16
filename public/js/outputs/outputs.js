@@ -56,6 +56,6 @@ $(document).ready(function(){
 
     $( "#export" ).click(function( event ) {
         event.preventDefault();
-        window.open('output/export?'+$( ':input' ).serialize(), '_blank');
+        window.open('output/pedidosPagamento?'+$( ':input' ).serialize(), '_blank');
     });
 });

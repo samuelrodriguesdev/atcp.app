@@ -30,7 +30,7 @@ use App\Helpers\Helper;
 
 class OutputController extends Controller
 {
-	public function testexcel()
+	public function pedidosPagamento(Request $request)
 	{
 
 		DB::setFetchMode(PDO::FETCH_ASSOC);
@@ -41,20 +41,20 @@ class OutputController extends Controller
 		->join('organismos_entidades', 'projectos.centro_emprego_id', '=', 'organismos_entidades.id')
 		->join('programas','projectos.programa_id', '=', 'programas.id')
 		->whereNull('promotores.deleted_at')
-		->when($request->has('centro_de_emprego'), function ($query) use ( $request ) {
-			return $query->where('promotores.centro_emprego_id', $request->input('centro_de_emprego'));
+		->when($request->has('centro_emprego'), function ($query) use ( $request ) {
+			return $query->where('projectos.centro_emprego_id', $request->input('centro_emprego'));
 		})
 		->when($request->has('programa'), function ($query) use ( $request ) {
-			return $query->where('promotores.programa_id', $request->input('programa'));
+			return $query->where('projectos.programa_id', $request->input('programa'));
 		})
 		->when($request->has('estado_pedido_pagamento'), function ($query) use ( $request ) {
 			return $query->where('projecto_pedidos_pagamento.estado_pedido_pagamento', $request->input('estado_pedido_pagamento'));
 		})
 		->when($request->has('ano'), function ($query) use ( $request ) {
-			return $query->where('YEAR(data_pedido_pagamento)', $request->input('ano'));
+			return $query->where(DB::raw('YEAR(data_pedido_pagamento)'), $request->input('ano'));
 		})
-		->when($request->has('trimestre'), function ($query) use ( $request ) {
-			return $query->where('QUARTER(data_pedido_pagamento)', $request->input('trimestre'));
+		->when($request->has('trimestres'), function ($query) use ( $request ) {
+			return $query->whereIn(DB::raw('QUARTER(data_pedido_pagamento)'), $request->input('trimestres'));
 		})
 		->get();
 		DB::setFetchMode(PDO::FETCH_CLASS);
@@ -123,14 +123,16 @@ class OutputController extends Controller
 					    ),
 					));
 				});
-				$sheet->cells('A2:J'.count($data)+1, function($cells) {
+				$sheet->cells('A2:J',count($data)+1, function($cells) {
 					$cells->setBorder(array(
 					    'outline'   => array(
 					        'style' => 'medium'
 					    ),
 					));
 				});
-				$sheet->cells('G306:H308', function($cells) {
+				$resultsInitialRow = count($data)+3;
+				$resultsFinalRow   = count($data)+5;
+				$sheet->cells('G'.$resultsInitialRow.':H'.$resultsFinalRow, function($cells) {
 					$cells->setBorder(array(
 					    'outline'   => array(
 					        'style' => 'medium'
