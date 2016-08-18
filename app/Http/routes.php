@@ -174,6 +174,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('output/pedidosPagamento/', 'OutputController@pedidosPagamento');
 	Route::get('output/consultores/', 'OutputController@consultores');
+	Route::get('output/promotores/', 'OutputController@promotores');
 });
 
 

@@ -41,7 +41,7 @@
                             <option value="2">Apoio á Consolidação</option>
                         </select>
                     </div>
-                </div>
+                </div>  
                 <div class="col-md-4 col-lg-4">
                     <div class="form-group has-feedback">
                         <label for="estado_pedido_pagamento">Estado Pedido de pagamento</label>
@@ -113,7 +113,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Consultores</h3>
             <div class="box-tools pull-right">
-                <a class="btn btn-block bg-olive btn-flat btn-sm">Exportar</a>
+                <a class="btn btn-block bg-olive btn-flat btn-sm" id="export_consultores" >Exportar</a>
             </div>
         </div>
         <div class="box-body">
@@ -123,11 +123,10 @@
         <div class="box-header with-border">
             <h3 class="box-title">Promotores</h3>
             <div class="box-tools pull-right">
-                <a class="btn btn-block bg-olive btn-flat btn-sm">Exportar</a>
+                <a class="btn btn-block bg-olive btn-flat btn-sm" id="export_promotores">Exportar</a>
             </div>
         </div>
         <div class="box-body">
-            The body of the box
         </div>
     </div>
 </section>

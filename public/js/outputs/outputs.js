@@ -58,4 +58,14 @@ $(document).ready(function(){
         event.preventDefault();
         window.open('output/pedidosPagamento?'+$( ':input' ).serialize(), '_blank');
     });
+
+    $( "#export_promotores" ).click(function( event ) {
+        event.preventDefault();
+        window.open('output/promotores?'+$( ':input' ).serialize(), '_blank');
+    });
+
+    $( "#export_consultores" ).click(function( event ) {
+        event.preventDefault();
+        window.open('output/consultores?'+$( ':input' ).serialize(), '_blank');
+    });
 });
