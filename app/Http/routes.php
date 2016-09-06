@@ -17,6 +17,8 @@ Route::get('logout', 'Auth\AuthController@logout');
 Route::group(['middleware' => 'auth'], function () {
 
 	
+	//Route::get('/testes/', 'TestesController@teste');
+
 
 	Route::get('/', function () {
 		return view('index');

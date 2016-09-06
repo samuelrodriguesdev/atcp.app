@@ -22,7 +22,7 @@
         <div class="form-group has-feedback">
             <label for="consultor_id">Consultor</label>
             <select name="consultor_id" id="consultores_select" class="form-control" required="required" style="width:100%;">
-            <option value="{{  $contrato->consultor->id }}">{{  $contrato->consultor->nome }}</option>
+                <option value="{{  $contrato->consultor->id }}">{{  $contrato->consultor->nome }}</option>
             </select>
         </div>
 
@@ -36,10 +36,11 @@
                 <input type="text" name="data_fim_servico"  class="form-control date" value="{{$contrato->data_fim_servico }}">
             </div>
         </div>
+
         <div class="row" id="apoio_a_criacao" {{ $contrato->contrato_tipo ==1 ? '' : 'style=display:none;' }}>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="elaboracao_candidatura" value="1" id="apoio_criacao" {{ $contrato->elaboracao_candidatura ==1 ? 'checked' : '' }}>
+                    <input type="checkbox" name="elaboracao_candidatura" value="1" id="apoio_criacao" {{ $contrato->contrato_tipo == 1 ? 'checked' : '' }}>
                     Elaboração da Candidatura
                 </label>
             </div>
@@ -47,52 +48,189 @@
         <div class="row" id="apoio_a_consolidacao" {{ $contrato->contrato_tipo ==2 ? '' : 'style=display:none;' }}>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="consultoria" value="1" id="consultoria" {{ $contrato->consultoria ==1 ? 'checked' : '' }}>
+                    <input type="checkbox" name="consultoria" value="1" id="consultoria" {{ $contrato->detalhes->where('tipo', 2)->count() > 0 ? 'checked' : '' }}>
                     Consultoria
                 </label>
                 <label>
-                    <input type="checkbox" name="formacao" value="1" id="formacao" {{ $contrato->formacao ==1 ? 'checked' : '' }}>
+                    <input type="checkbox" name="formacao" value="1" id="formacao" {{ $contrato->detalhes->where('tipo', 1)->count() > 0 ==1 ? 'checked' : '' }}>
                     Formação
                 </label>
             </div>
         </div>
-        
-        <div class="row hidden_inputs" id="consultoria_div" {{ $contrato->consultoria ==1 ? '' : 'style=display:none;' }}>
-            <div class="form-group has-feedback col-md-4 col-xs-4">
-                <label for="numero_horas_consultoria">NºHoras Consultoria</label>
-                <input type="number" name="numero_horas_consultoria" id="numero_horas_consultoria" class="form-control" value="{{ $contrato->numero_horas_consultoria }}">
-            </div>
-            <div class="form-group has-feedback col-md-4 col-xs-4">
-                <label for="valor_hora_consultoria">€/H</label>
-                <input type="number" name="valor_hora_consultoria" id="valor_hora_consultoria" class="form-control" value="{{ $contrato->valor_hora_consultoria }}">
-            </div>
-            <div class="form-group has-feedback col-md-4 col-xs-4">
-                <label for="total_consultoria">Total</label>
-                <input type="number" name="total_consultoria" id="total_consultoria" class="form-control" value="{{ $contrato->total_consultoria }}" readonly>
+        @if( $contrato->detalhes->where('tipo', 2)->count() > 0 )
+            <hr style="border: 0; height: 1px;  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));" id="consultoria_hr">
+        @endif
+        <div class="consultoria_container">
+        <div class="row hidden_inputs consultoria_div" id="consultoria_div" {{ $contrato->detalhes->where('tipo', 2)->count() > 0 ? '' : 'style=display:none;' }} >
+                <input type="hidden" name="consultoria[0][tipo]" class="form-control" value="2">
+                <div class="form-group has-feedback col-md-3 col-xs-3">
+                    <label for="valor_hora">Trim./Ano</label>
+                    <div class="input-group">
+                        <select name="consultoria[0][trimestre]" class="inputTrimestre form-control custom-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <select name="consultoria[0][ano]" class="inputAno form-control custom-control">
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group has-feedback col-md-3 col-xs-3">
+                    <label for="numero_horas_consultoria">NºHoras Consultoria</label>
+                    <input type="text" name="consultoria[0][numero_horas]" class="form-control numero_horas2">
+                </div>
+                <div class="form-group has-feedback col-md-2 col-xs-2">
+                    <label for="valor_hora_consultoria">€/H</label>
+                    <input type="text" name="consultoria[0][valor_hora]" class="form-control valor_hora2">
+                </div>
+                <div class="form-group has-feedback col-md-2 col-xs-2">
+                    <label for="total_consultoria">Total</label>
+                    <input type="text" name="consultoria[0][total]" id="total_consultoria" class="form-control" readonly>
+                </div>
+                <div class="form-group has-feedback col-md-2 col-xs-2 rmv_btn">
+                </div>
             </div>
         </div>
-        <div class="row hidden_inputs" id="formacao_div" {{ $contrato->formacao ==1 ? '' : 'style=display:none;' }}>
-            <div class="form-group has-feedback col-md-4 col-xs-4">
-                <label for="numero_horas_formacao">NºHoras Formação</label>
-                <input type="number" name="numero_horas_formacao" id="numero_horas_formacao" class="form-control" value="{{ $contrato->numero_horas_formacao }}" >
-            </div>
-            <div class="form-group has-feedback col-md-4 col-xs-4">
-                <label for="valor_hora_formacao">€/H</label>
-                <input type="number" name="valor_hora_formacao" id="valor_hora_formacao" class="form-control" value="{{ $contrato->valor_hora_formacao }}">
-            </div>
-            <div class="form-group has-feedback col-md-4 col-xs-4">
-                <label for="total_formacao">Total</label>
-                <input type="number" name="total_formacao" id="total_formacao" class="form-control" value="{{ $contrato->total_formacao }}" readonly>
+        <div class="row hidden_inputs" id="consultoria_add_btn"  {{ $contrato->detalhes->where('tipo', 2)->count() > 0 ? '' : 'style=display:none;' }}>
+            <div class="form-group has-feedback col-md-6 col-xs-6">
+                <button class="btn btn-flat bg-green add_btn" type="button" data-div="consultoria_container" data-remove="consultoria_div"><i class="fa fa-plus"></i></button>
             </div>
         </div>
-        <div class="row hidden_inputs" id="apoio_criacao_div" {{ $contrato->elaboracao_candidatura ==1 ? '' : 'style=display:none;' }}>
-            <div class="form-group has-feedback col-md-8 col-xs-8">
-                <label for="numero_horas_apoio_criacao">% Elaboração da Candidatura</label>
-                <input type="number" name="percentagem_elaboracao_candidatura" id="percentagem_elaboracao_candidatura" value="{{ $contrato->percentagem_elaboracao_candidatura }}" class="form-control">
+        @if( $contrato->detalhes->where('tipo', 2)->count() > 0 )
+            <hr style="border: 0; height: 1px;  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));" id="consultoria_hr">
+        @endif
+        <div class="formacao_container">
+            <div class="row hidden_inputs formacao_div" id="formacao_div" {{ $contrato->detalhes->where('tipo', 1)->count() > 0 ? '' : 'style=display:none;' }}>
+                <input type="hidden" name="formacao[0][tipo]" class="form-control" value="1">
+                <div class="form-group has-feedback col-md-3 col-xs-3">
+                    <label for="valor_hora">Trim./Ano</label>
+                    <div class="input-group">
+                        <select name="formacao[0][trimestre]" class="inputTrimestre form-control custom-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <select name="formacao[0][ano]" class="inputAno form-control custom-control">
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group has-feedback col-md-3 col-xs-3">
+                    <label for="numero_horas_formacao">NºHoras Formação</label>
+                    <input type="text" name="formacao[0][numero_horas]" class="form-control numero_horas2">
+                </div>
+                <div class="form-group has-feedback col-md-2 col-xs-2">
+                    <label for="valor_hora_formacao">€/H</label>
+                    <input type="text" name="formacao[0][valor_hora]" class="form-control valor_hora2">
+                </div>
+                <div class="form-group has-feedback col-md-2 col-xs-2">
+                    <label for="total_formacao">Total</label>
+                    <input type="text" name="formacao[0][total]" id="total_formacao" class="form-control" readonly>
+                </div>
+                <div class="form-group has-feedback col-md-2 col-xs-2 rmv_btn">
+                </div>
             </div>
+        </div>
+        <div class="row hidden_inputs" id="formacao_add_btn"  {{ $contrato->detalhes->where('tipo', 1)->count() > 0 ? '' : 'style=display:none;' }}>
             <div class="form-group has-feedback col-md-4 col-xs-4">
-                <label for="total_apoio_criacao">Total</label>
-                <input type="number" name="total_elaboracao_candidatura" id="total_elaboracao_candidatura" class="form-control" value="{{ $contrato->total_elaboracao_candidatura }}" readonly>
+                <button class="btn btn-flat bg-green add_btn" type="button" data-div="formacao_container" data-remove="formacao_div"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="apoio_criacao_container">
+            <div class="row hidden_inputs apoio_criacao_div" id="apoio_criacao_div" {{ $contrato->detalhes->where('tipo', 3)->count() > 0 ? '' : 'style=display:none;' }}>
+                <input type="hidden" name="apoio_criacao[0][tipo]" class="form-control" value="3">
+                <div class="form-group has-feedback col-md-4 col-xs-4">
+                    <label for="valor_hora">Trim./Ano</label>
+                    <div class="input-group">
+                        <select name="apoio_criacao[0][trimestre]" class="inputTrimestre form-control custom-control">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <select name="apoio_criacao[0][ano]" class="form-control inputAno custom-control">
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group has-feedback col-md-3 col-xs-3 div_valor_hora">
+                    <label for="valor_hora">% EC</label>
+                    <input type="text" name="apoio_criacao[0][valor_hora]" class="form-control valor_hora">
+                </div>
+                <div class="form-group has-feedback col-md-3 col-xs-3">
+                    <label for="total">Total</label>
+                    <input type="text" name="apoio_criacao[0][total]" class="form-control total_elaboracao_candidatura" readonly>
+                </div>   
+                <div class="form-group has-feedback col-md-2 col-xs-2 rmv_btn">
+                </div>
+            </div>
+        </div>
+        <div class="row hidden_inputs" id="apoio_criacao_add_btn"  {{ $contrato->detalhes->where('tipo', 3)->count() > 0 ? '' : 'style=display:none;' }}>
+            <div class="form-group has-feedback col-md-6 col-xs-6">
+                <button class="btn btn-flat bg-green add_btn" type="button" data-div="apoio_criacao_container" data-remove="apoio_criacao_div"><i class="fa fa-plus"></i></button>
             </div>
         </div>
     </div>

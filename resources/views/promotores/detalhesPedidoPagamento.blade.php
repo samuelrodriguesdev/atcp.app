@@ -6,7 +6,7 @@
     <h4 class="modal-title">Detalhes Pedido</h4>
 </div>
 <div class="modal-body">
-    <form id="novoPP_Form" action="{{ url('projecto/update_pedido_pagamento'.$pp->id) }}" method="POST" accept-charset="utf-8" data-toggle="validator">
+    <form id="novoPP_Form" action="{{ url('projecto/update_pedido_pagamento/'.$pp->id) }}" method="POST" accept-charset="utf-8" data-toggle="validator">
         {{ csrf_field() }}
         <div class="row">
             <div class="form-group has-feedback col-md-6">

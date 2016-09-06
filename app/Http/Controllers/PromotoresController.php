@@ -22,6 +22,8 @@ use App\ProjectoConsultor;
 
 use App\ProjectoPP;
 
+use App\ProjectoConsultoresDetalhes;
+
 class PromotoresController extends Controller
 {
 	public function tableData()
@@ -115,11 +117,26 @@ class PromotoresController extends Controller
 	public function ProjectoConsultor(Request $request)
 	{
 		
-		$query = ProjectoConsultor::create($request->all());
-        if (!$query) {
-           flash()->error('Ups, Ocorreu um Erro Tente Novamente Mais Tarde. Se o Problema Persistir, Contacte o Administrador!');
-           return redirect()->back();
-        }
+		$consultor = ProjectoConsultor::create($request->all());
+
+		if ($request->input('contrato_tipo') == 2 && $request->has('formacao_chk')) {
+			foreach ($request->input('formacao') as $array) {
+				$array = array_prepend($array, $consultor->id, 'projecto_consultor_id');
+				ProjectoConsultoresDetalhes::create($array);
+			}
+		}
+		if ($request->input('contrato_tipo') == 2 && $request->has('consultoria_chk')) {
+			foreach ($request->input('consultoria') as $array) {
+				$array = array_prepend($array, $consultor->id, 'projecto_consultor_id');
+				ProjectoConsultoresDetalhes::create($array);
+			}
+		}
+		if ($request->input('contrato_tipo') == 1) {
+			foreach ($request->input('apoio_criacao') as $array) {
+				$array = array_prepend($array, $consultor->id, 'projecto_consultor_id');
+				ProjectoConsultoresDetalhes::create($array);
+			}
+		}
         flash()->success('Consultor Adicionado com Sucesso!');
 	}
 

@@ -88,13 +88,13 @@
 </div>
 </div>
 <div id="myModal" class="modal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
         </div>
     </div>
 </div>
 <div id="detalhesContrato" class="modal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
         </div>
     </div>

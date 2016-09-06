@@ -23,7 +23,7 @@ class ProjectoConsultor extends Model
      * @var array
      */
     protected $fillable = [
-        'projecto_id', 'consultor_id', 'contrato_tipo', 'consultoria', 'valor_hora_consultoria', 'numero_horas_consultoria', 'total_consultoria', 'formacao', 'valor_hora_formacao', 'numero_horas_formacao', 'total_formacao', 'data_inicio_servico', 'data_fim_servico', 'elaboracao_canditatura', 'percentagem_elaboracao_candidatura', 'total_elaboracao_candidatura'
+        'projecto_id', 'consultor_id', 'contrato_tipo', 'data_inicio_servico', 'data_fim_servico'
     ];
 
     /**
@@ -42,6 +42,15 @@ class ProjectoConsultor extends Model
     public function projectos() 
     {
     	return $this->belongsTo('App\projectos', 'projecto_id', 'id');
+    }
+
+     /**
+     * [detalhes description]
+     * @return [type] [description]
+     */
+    public function detalhes() 
+    {
+        return $this->hasMany('App\ProjectoConsultoresDetalhes', 'projecto_consultor_id', 'id');
     }
 
     /**
