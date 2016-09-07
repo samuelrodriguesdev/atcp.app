@@ -19,7 +19,8 @@
         <div class="panel box box-primary">
             <div class="box-header with-border">
                 <h4 class="box-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $contrato->id }}" aria-expanded="false" class="collapsed">
+                 <!--    href="#collapse{{ $contrato->id }}" -->
+                    <a data-toggle="collapse" data-parent="#accordion"  aria-expanded="false" class="collapsed">
                         {{ $contrato->consultor->nome }}
                     </a>
                 </h4>
