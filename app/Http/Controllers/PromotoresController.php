@@ -153,11 +153,30 @@ class PromotoresController extends Controller
 
 	public function ProjectoConsultorUpdate(Request $request, ProjectoConsultor $contrato)
 	{
-		$query = $contrato->update($request->all());
-        if (!$query) {
-           flash()->error('Ups, Ocorreu um Erro Tente Novamente Mais Tarde. Se o Problema Persistir, Contacte o Administrador!');
-           return redirect()->back();
-        }
+		$contrato->update($request->all());
+		$contrato->detalhes()->delete();
+
+		if ($request->input('contrato_tipo') == 2 && $request->has('formacao_chk')) {
+			foreach ($request->input('formacao') as $array) {
+				$array = array_prepend($array, $contrato->id, 'projecto_consultor_id');
+				ProjectoConsultoresDetalhes::create($array);
+			}
+		}
+
+		if ($request->input('contrato_tipo') == 2 && $request->has('consultoria_chk')) {
+			foreach ($request->input('consultoria') as $array) {
+				$array = array_prepend($array, $contrato->id, 'projecto_consultor_id');
+				ProjectoConsultoresDetalhes::create($array);
+			}
+		}
+
+		if ($request->input('contrato_tipo') == 1) {
+			foreach ($request->input('apoio_criacao') as $array) {
+				$array = array_prepend($array, $contrato->id, 'projecto_consultor_id');
+				ProjectoConsultoresDetalhes::create($array);
+			}
+		}
+       
         flash()->success('Consultor Actualizado com Sucesso!');
 	}
 
