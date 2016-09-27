@@ -35,6 +35,7 @@ class EstatisticaController extends Controller
 		->when($request->has('ppCe'), function ($query) use ( $request ) {
 			return $query->where('centro_emprego_id', $request->input('ppCe'));
 		})
+		->whereNull('deleted_at')
 		->get();
 		$nao_liquidado = DB::table('projecto_pedidos_pagamento')
 		->select( 
@@ -62,6 +63,7 @@ class EstatisticaController extends Controller
 			return $query->where('centro_emprego_id', $request->input('ppCe'));
 		})
 		->whereIn('estado_pedido_pagamento', [1,3])
+		->whereNull('deleted_at')
 		->get();
 		DB::setFetchMode(PDO::FETCH_CLASS);
 		$results[0]=$helper->formatArray($liquidado);

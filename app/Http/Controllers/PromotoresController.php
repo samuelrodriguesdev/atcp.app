@@ -31,7 +31,9 @@ class PromotoresController extends Controller
         $promotores = DB::table('promotores')
         ->leftJoin('projectos', 'promotores.id', '=', 'projectos.promotor_id')
         ->leftJoin('programas', 'projectos.programa_id', '=', 'programas.id')
-        ->select(['promotores.id', 'promotores.nome', 'programas.designacao', DB::raw('(CASE WHEN promotor_estado = 1 THEN "Potencial" WHEN promotor_estado = 2 THEN "Activo" WHEN promotor_estado = 3 THEN "Inactivo" ELSE "" END) as promotor_estado')]);
+        ->leftJoin('organismos_entidades', 'projectos.centro_emprego_id', '=', 'organismos_entidades.id')
+        ->select(['promotores.id', 'promotores.nome', 'programas.designacao', DB::raw('(CASE WHEN promotor_estado = 1 THEN "Potencial" WHEN promotor_estado = 2 THEN "Activo" WHEN promotor_estado = 3 THEN "Inactivo" ELSE "" END) as promotor_estado'), 'organismos_entidades.nome as organismo'])
+        ->whereNull('promotores.deleted_at');
         return Datatables::of($promotores)
         ->make();
     

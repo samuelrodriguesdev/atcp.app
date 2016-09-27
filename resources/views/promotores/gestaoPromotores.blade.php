@@ -9,11 +9,6 @@
    <div class="box box-success ">
       <div class="box-header with-border">
          <h3 class="box-title">Promotores</h3>
-         <div class="box-tools pull-right">
-            <div class="has-feedback">
-
-            </div>
-         </div>
       </div>
       <div class="box-body ">
          <table class="table table-bordered table-hover"  width="100%" id="promotores-table">
@@ -23,6 +18,7 @@
                   <th>Promotor</th>
                   <th>Programa</th>
                   <th>Estado</th>
+                  <th></th>
                </tr>
             </thead>
          </table>
@@ -34,4 +30,3 @@
 @section('javascript')
 <script src="{{ asset("js/promotores/gestao_promotores.js") }}"></script>
 @endsection
-

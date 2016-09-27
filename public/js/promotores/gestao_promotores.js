@@ -4,6 +4,7 @@ $(document).ready(function() {
 		"initComplete": function(settings, json) {
             $('div.overlay').css('visibility', 'hidden');
         },
+        stateSave : true,
       	processing: true,
       	serverSide: true,
       	ajax: Url+'/promotores/data-table',
@@ -23,6 +24,10 @@ $(document).ready(function() {
         {
             "targets": [ 3 ],
             "bSearchable": false,
+        },
+        {
+            "targets": [ 4 ],
+            "visible": false,
         }
         ]
       	//"sDom": '<"top">rt<"bottom"ip><"clear">',
