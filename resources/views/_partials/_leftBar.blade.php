@@ -42,7 +42,7 @@
          </li>
          <li class="{{ Request::segment(1) == "Outputs" ? 'active' : ''  }}">
             <a href="{{ url("/Outputs/") }}">
-               <i class="fa fa-users"></i> <span>Outputs</span>
+               <i class="fa fa-database"></i> <span>Outputs</span>
             </a>
          </li>
       </ul>
