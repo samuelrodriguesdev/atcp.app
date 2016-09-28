@@ -94,29 +94,30 @@ class EstatisticaController extends Controller
 	{
 		DB::setFetchMode(PDO::FETCH_ASSOC);
 		$result = DB::table('projecto_consultores')
-		->when(!$request->has('contrato_tipo') || $request->input('contrato_tipo') ==1, function ($query) use ( $request ) {
+		->join('projecto_consultores_detalhes', 'projecto_consultores.id', '=', 'projecto_consultores_detalhes.projecto_consultor_id')
+		->when(!$request->has('contrato_tipo') || $request->input('contrato_tipo') == 1, function ($query) use ( $request ) {
 			return $query->select( DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 1 THEN total_elaboracao_candidatura 
-				WHEN MONTH(data_inicio_servico) = 2 THEN total_elaboracao_candidatura
-				WHEN MONTH(data_inicio_servico) = 3 THEN total_elaboracao_candidatura
+				WHEN MONTH(data_inicio_servico) = 1 THEN total 
+				WHEN MONTH(data_inicio_servico) = 2 THEN total
+				WHEN MONTH(data_inicio_servico) = 3 THEN total
 				ELSE 0 
 				END), 2) AS 1_trimestre_elaboracao_candidatura'), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 4 THEN total_elaboracao_candidatura 
-				WHEN MONTH(data_inicio_servico) = 5 THEN total_elaboracao_candidatura
-				WHEN MONTH(data_inicio_servico) = 6 THEN total_elaboracao_candidatura
+				WHEN MONTH(data_inicio_servico) = 4 THEN total 
+				WHEN MONTH(data_inicio_servico) = 5 THEN total
+				WHEN MONTH(data_inicio_servico) = 6 THEN total
 				ELSE 0 
 				END), 2) AS 2_trimestre_elaboracao_candidatura'), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 7 THEN total_elaboracao_candidatura 
-				WHEN MONTH(data_inicio_servico) = 8 THEN total_elaboracao_candidatura
-				WHEN MONTH(data_inicio_servico) = 9 THEN total_elaboracao_candidatura
+				WHEN MONTH(data_inicio_servico) = 7 THEN total 
+				WHEN MONTH(data_inicio_servico) = 8 THEN total
+				WHEN MONTH(data_inicio_servico) = 9 THEN total
 				ELSE 0 
 				END), 2) AS 3_trimestre_elaboracao_candidatura'), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 10 THEN total_elaboracao_candidatura 
-				WHEN MONTH(data_inicio_servico) = 11 THEN total_elaboracao_candidatura
-				WHEN MONTH(data_inicio_servico) = 12 THEN total_elaboracao_candidatura
+				WHEN MONTH(data_inicio_servico) = 10 THEN total 
+				WHEN MONTH(data_inicio_servico) = 11 THEN total
+				WHEN MONTH(data_inicio_servico) = 12 THEN total
 				ELSE 0 
 				END), 2) AS 4_trimestre_elaboracao_candidatura'),
 			DB::raw( 'ROUND(SUM(CASE 
