@@ -121,51 +121,51 @@ class EstatisticaController extends Controller
 				ELSE 0 
 				END), 2) AS 4_trimestre_elaboracao_candidatura'),
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 1 THEN total_consultoria 
-				WHEN MONTH(data_inicio_servico) = 2 THEN total_consultoria
-				WHEN MONTH(data_inicio_servico) = 3 THEN total_consultoria
+				WHEN MONTH(data_inicio_servico) = 1 THEN total 
+				WHEN MONTH(data_inicio_servico) = 2 THEN total
+				WHEN MONTH(data_inicio_servico) = 3 THEN total
 				ELSE 0 
 				END), 2) AS 1_trimestre_consultoria'), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 4 THEN total_consultoria 
-				WHEN MONTH(data_inicio_servico) = 5 THEN total_consultoria
-				WHEN MONTH(data_inicio_servico) = 6 THEN total_consultoria
+				WHEN MONTH(data_inicio_servico) = 4 THEN total 
+				WHEN MONTH(data_inicio_servico) = 5 THEN total
+				WHEN MONTH(data_inicio_servico) = 6 THEN total
 				ELSE 0 
 				END), 2) AS 2_trimestre_consultoria'), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 7 THEN total_consultoria 
-				WHEN MONTH(data_inicio_servico) = 8 THEN total_consultoria
-				WHEN MONTH(data_inicio_servico) = 9 THEN total_consultoria
+				WHEN MONTH(data_inicio_servico) = 7 THEN total 
+				WHEN MONTH(data_inicio_servico) = 8 THEN total
+				WHEN MONTH(data_inicio_servico) = 9 THEN total
 				ELSE 0 
 				END), 2) AS 3_trimestre_consultoria'), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 10 THEN total_consultoria 
-				WHEN MONTH(data_inicio_servico) = 11 THEN total_consultoria
-				WHEN MONTH(data_inicio_servico) = 12 THEN total_consultoria
+				WHEN MONTH(data_inicio_servico) = 10 THEN total 
+				WHEN MONTH(data_inicio_servico) = 11 THEN total
+				WHEN MONTH(data_inicio_servico) = 12 THEN total
 				ELSE 0 
 				END), 2) AS 4_trimestre_consultoria'),
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 1 THEN total_formacao 
-				WHEN MONTH(data_inicio_servico) = 2 THEN total_formacao
-				WHEN MONTH(data_inicio_servico) = 3 THEN total_formacao
+				WHEN MONTH(data_inicio_servico) = 1 THEN total 
+				WHEN MONTH(data_inicio_servico) = 2 THEN total
+				WHEN MONTH(data_inicio_servico) = 3 THEN total
 				ELSE 0 
 				END), 2) AS 1_trimestre_formacao '), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 4 THEN total_formacao 
-				WHEN MONTH(data_inicio_servico) = 5 THEN total_formacao
-				WHEN MONTH(data_inicio_servico) = 6 THEN total_formacao
+				WHEN MONTH(data_inicio_servico) = 4 THEN total 
+				WHEN MONTH(data_inicio_servico) = 5 THEN total
+				WHEN MONTH(data_inicio_servico) = 6 THEN total
 				ELSE 0 
 				END), 2) AS 2_trimestre_formacao '), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 7 THEN total_formacao 
-				WHEN MONTH(data_inicio_servico) = 8 THEN total_formacao
-				WHEN MONTH(data_inicio_servico) = 9 THEN total_formacao
+				WHEN MONTH(data_inicio_servico) = 7 THEN total 
+				WHEN MONTH(data_inicio_servico) = 8 THEN total
+				WHEN MONTH(data_inicio_servico) = 9 THEN total
 				ELSE 0 
 				END), 2) AS 3_trimestre_formacao '), 
 			DB::raw( 'ROUND(SUM(CASE 
-				WHEN MONTH(data_inicio_servico) = 10 THEN total_formacao 
-				WHEN MONTH(data_inicio_servico) = 11 THEN total_formacao
-				WHEN MONTH(data_inicio_servico) = 12 THEN total_formacao
+				WHEN MONTH(data_inicio_servico) = 10 THEN total 
+				WHEN MONTH(data_inicio_servico) = 11 THEN total
+				WHEN MONTH(data_inicio_servico) = 12 THEN total
 				ELSE 0 
 				END), 2) AS 4_trimestre_formacao ')
 			);
