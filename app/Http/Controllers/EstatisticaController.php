@@ -470,7 +470,7 @@ public function total_por_programa_centro(Request $request)
 	
 	$centros = DB::table('organismos_entidades')
 	->select('organismos_entidades.id', 'organismos_entidades.nome')
-	->innerJoin('projectos','projectos.centro_emprego_id', '=', 'organismos_entidades.id')
+	->join('projectos','projectos.centro_emprego_id', '=', 'organismos_entidades.id')
 	->orderBy('organismos_entidades.id')
 	->groupBy('organismos_entidades.id')
 	->get();
