@@ -155,7 +155,16 @@ class OutputController extends Controller
 
 		DB::setFetchMode(PDO::FETCH_ASSOC);
 		$data = DB::table('projecto_consultores')
-		->select('programas.designacao', 'promotores.nome as promotor', 'consultores.nome', 'contrato_tipo', 'valor_hora', 'numero_horas', 'total', 'data_inicio_servico', 'data_fim_servico')
+		->select('programas.designacao', 'promotores.nome as promotor', 'consultores.nome', 'contrato_tipo', 
+			DB::raw( 'ROUND(SUM(CASE WHEN tipo = 1 THEN valor_hora ELSE 0 END), 2) AS valor_hora_consultoria'),
+			DB::raw( 'ROUND(SUM(CASE WHEN tipo = 1 THEN numero_horas ELSE 0 END), 2) AS numero_horas_consultoria'),
+			DB::raw( 'ROUND(SUM(CASE WHEN tipo = 1 THEN total ELSE 0 END), 2) AS total_consultoria'),
+			DB::raw( 'ROUND(SUM(CASE WHEN tipo = 2 THEN valor_hora ELSE 0 END), 2) AS valor_hora_formacao'),
+			DB::raw( 'ROUND(SUM(CASE WHEN tipo = 2 THEN numero_horas ELSE 0 END), 2) AS numero_horas_formacao'),
+			DB::raw( 'ROUND(SUM(CASE WHEN tipo = 2 THEN total ELSE 0 END), 2) AS total_formacao'),
+			DB::raw( 'ROUND(SUM(CASE WHEN contrato_tipo = 1 THEN valor_hora ELSE 0 END), 2) AS percentagem_elaboracao_candidatura'),
+			DB::raw( 'ROUND(SUM(CASE WHEN contrato_tipo = 1 THEN total ELSE 0 END), 2) AS total_elaboracao_candidatura'),			
+		    'data_inicio_servico', 'data_fim_servico')
 		->join('projectos', 'projectos.id', '=', 'projecto_consultores.projecto_id')
 		->join('promotores', 'promotores.id', '=', 'projectos.promotor_id')
 		->join('consultores', 'projecto_consultores.consultor_id', '=', 'consultores.id')
@@ -204,18 +213,22 @@ class OutputController extends Controller
 					'A' => '@',
 					'B' => '@',
 					'C' => '@',
-					'D' => '@',
-					'E' => '[$€ ]#,##0.00_-',
-					'F' => '0',
+					'D' => '[$€ ]#,##0.00_-',
+					'E' => '0',
+					'F' => '[$€ ]#,##0.00_-',
 					'G' => '[$€ ]#,##0.00_-',
-					'H' => 'yyyy-mm-dd',
-					'I' => 'yyyy-mm-dd'
+					'H' => '0',
+					'I' => '[$€ ]#,##0.00_-',
+					'J' => '0',
+					'K' => '[$€ ]#,##0.00_-',
+					'L' => 'yyyy-mm-dd',
+					'M' => 'yyyy-mm-dd'
 				));
 
 				$sheet->fromArray([], null, 'A2', false, false);
 
 				$sheet->appendRow(1, array(
-					'Programa', 'Promotor', 'Consultor', 'Tipo de Apoio', '(€/H)', '(Horas)', '(Total)', 'Data Início', 'Data Fim'
+					'Programa', 'Promotor', 'Consultor', 'Tipo de Apoio', 'Consultoria(€/H)', 'Consultoria(H)', 'Consultoria(Total)', 'Formação(€/H)', 'Consultoria(H)', 'Consultoria(Total)', 'Elaboração de Candidatura(%)', 'Elaboração de Candidatura(Total)', 'Data Início', 'Data Fim'
 					));
 				$sheet->row(1, function($row) {
 					$row->setBackground('#BFBFBF');
