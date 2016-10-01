@@ -207,19 +207,14 @@ class OutputController extends Controller
 					'D' => '[$€ ]#,##0.00_-',
 					'E' => '0',
 					'F' => '[$€ ]#,##0.00_-',
-					'G' => '[$€ ]#,##0.00_-',
-					'H' => '0',
-					'I' => '[$€ ]#,##0.00_-',
-					'J' => '0',
-					'K' => '[$€ ]#,##0.00_-',
-					'L' => 'yyyy-mm-dd',
-					'M' => 'yyyy-mm-dd'
+					'G' => 'yyyy-mm-dd',
+					'H' => 'yyyy-mm-dd'
 				));
 
 				$sheet->fromArray([], null, 'A2', false, false);
 
 				$sheet->appendRow(1, array(
-					'Programa', 'Promotor', 'Consultor', 'Tipo de Apoio', 'Consultoria(€/H)', 'Consultoria(H)', 'Consultoria(Total)', 'Formação(€/H)', 'Consultoria(H)', 'Consultoria(Total)', 'Elaboração de Candidatura(%)', 'Elaboração de Candidatura(Total)', 'Data Início', 'Data Fim'
+					'Programa', 'Promotor', 'Consultor', 'Tipo de Apoio', '(€/H)', '(Horas)', '(Total)', 'Data Início', 'Data Fim'
 					));
 				$sheet->row(1, function($row) {
 					$row->setBackground('#BFBFBF');
