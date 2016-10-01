@@ -160,6 +160,7 @@ class OutputController extends Controller
 		->join('promotores', 'promotores.id', '=', 'projectos.promotor_id')
 		->join('consultores', 'projecto_consultores.consultor_id', '=', 'consultores.id')
 		->join('organismos_entidades', 'projectos.centro_emprego_id', '=', 'organismos_entidades.id')
+		->join('projecto_consultores_detalhes','projecto_consultores_detalhes.projecto_consultor_id', '=', 'projecto_consultores.id')
 		->join('programas','projectos.programa_id', '=', 'programas.id')
 		->whereNull('promotores.deleted_at')
 		->when($request->has('centro_emprego'), function ($query) use ( $request ) {
