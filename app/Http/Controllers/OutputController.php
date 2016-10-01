@@ -187,8 +187,8 @@ class OutputController extends Controller
 		->when($request->has('ano'), function ($query) use ( $request ) {
 			return $query->where(DB::raw('YEAR(projecto_data_inicio)'), $request->input('ano'));
 		})
-		->get();
-
+		->toSql();
+		dd();
 		DB::setFetchMode(PDO::FETCH_CLASS);
 		foreach ($data as $key => &$object) 
 		{
