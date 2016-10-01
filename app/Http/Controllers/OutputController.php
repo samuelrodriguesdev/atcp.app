@@ -204,11 +204,12 @@ class OutputController extends Controller
 					'A' => '@',
 					'B' => '@',
 					'C' => '@',
-					'D' => '[$€ ]#,##0.00_-',
-					'E' => '0',
-					'F' => '[$€ ]#,##0.00_-',
-					'G' => 'yyyy-mm-dd',
-					'H' => 'yyyy-mm-dd'
+					'D' => '@',
+					'E' => '[$€ ]#,##0.00_-',
+					'F' => '0',
+					'G' => '[$€ ]#,##0.00_-',
+					'H' => 'yyyy-mm-dd',
+					'I' => 'yyyy-mm-dd'
 				));
 
 				$sheet->fromArray([], null, 'A2', false, false);
