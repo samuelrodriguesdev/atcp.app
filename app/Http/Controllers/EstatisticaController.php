@@ -482,7 +482,7 @@ public function total_por_programa_centro(Request $request)
 	foreach ($programas as $programa) {
 		$total_por_programa = DB::table('organismos_entidades')
 		->select(DB::raw('COUNT(projectos.id) as Total'))
-		->innerJoin('projectos', function ($join) use ($programa, $request) {
+		->leftJoin('projectos', function ($join) use ($programa, $request) {
 			$join->on('projectos.centro_emprego_id', '=', 'organismos_entidades.id')
 			->where('projectos.programa_id', '=', $programa['programa_id'])
 			->where(DB::raw('YEAR(projecto_data_inicio)'),'=',  $request->input('ppYear') );	
