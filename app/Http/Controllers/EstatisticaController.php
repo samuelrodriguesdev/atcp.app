@@ -277,99 +277,99 @@ class EstatisticaController extends Controller
 		->when($request->has('contrato_tipo') && $request->input('contrato_tipo') == 2 && $request->input('consultoria') == 'true' && $request->input('formacao') == 'true' , function ($query) use ( $request ) {
 			return $query->select(
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 1 THEN total_consultoria 
-					WHEN MONTH(data_inicio_servico) = 2 THEN total_consultoria
-					WHEN MONTH(data_inicio_servico) = 3 THEN total_consultoria
+					WHEN MONTH(data_inicio_servico) = 1 AND tipo = 2 THEN total
+					WHEN MONTH(data_inicio_servico) = 2 AND tipo = 2 THEN total
+					WHEN MONTH(data_inicio_servico) = 3 AND tipo = 2 THEN total
 					ELSE 0 
 					END), 2) AS 1_trimestre_consultoria'), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 4 THEN total_consultoria 
-					WHEN MONTH(data_inicio_servico) = 5 THEN total_consultoria
-					WHEN MONTH(data_inicio_servico) = 6 THEN total_consultoria
+					WHEN MONTH(data_inicio_servico) = 4 AND tipo = 2 THEN total 
+					WHEN MONTH(data_inicio_servico) = 5 AND tipo = 2 THEN total
+					WHEN MONTH(data_inicio_servico) = 6 AND tipo = 2 THEN total
 					ELSE 0 
 					END), 2) AS 2_trimestre_consultoria'), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 7 THEN total_consultoria 
-					WHEN MONTH(data_inicio_servico) = 8 THEN total_consultoria
-					WHEN MONTH(data_inicio_servico) = 9 THEN total_consultoria
+					WHEN MONTH(data_inicio_servico) = 7 AND tipo = 2 THEN total 
+					WHEN MONTH(data_inicio_servico) = 8 AND tipo = 2 THEN total
+					WHEN MONTH(data_inicio_servico) = 9 AND tipo = 2 THEN total
 					ELSE 0 
 					END), 2) AS 3_trimestre_consultoria'), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 10 THEN total_consultoria 
-					WHEN MONTH(data_inicio_servico) = 11 THEN total_consultoria
-					WHEN MONTH(data_inicio_servico) = 12 THEN total_consultoria
+					WHEN MONTH(data_inicio_servico) = 10 AND tipo = 2  THEN total 
+					WHEN MONTH(data_inicio_servico) = 11 AND tipo = 2  THEN total
+					WHEN MONTH(data_inicio_servico) = 12 AND tipo = 2  THEN total
 					ELSE 0 
 					END), 2) AS 4_trimestre_consultoria'),
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 1 THEN numero_horas_consultoria 
-					WHEN MONTH(data_inicio_servico) = 2 THEN numero_horas_consultoria
-					WHEN MONTH(data_inicio_servico) = 3 THEN numero_horas_consultoria
+					WHEN MONTH(data_inicio_servico) = 1 AND tipo = 2 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 2 AND tipo = 2 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 3 AND tipo = 2 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 1_trimestre_horas_consultoria '), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 4 THEN numero_horas_consultoria 
-					WHEN MONTH(data_inicio_servico) = 5 THEN numero_horas_consultoria
-					WHEN MONTH(data_inicio_servico) = 6 THEN numero_horas_consultoria
+					WHEN MONTH(data_inicio_servico) = 4 AND tipo = 2 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 5 AND tipo = 2 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 6 AND tipo = 2 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 2_trimestre_horas_consultoria '), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 7 THEN numero_horas_consultoria 
-					WHEN MONTH(data_inicio_servico) = 8 THEN numero_horas_consultoria
-					WHEN MONTH(data_inicio_servico) = 9 THEN numero_horas_consultoria
+					WHEN MONTH(data_inicio_servico) = 7 AND tipo = 2 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 8 AND tipo = 2 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 9 AND tipo = 2 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 3_trimestre_horas_consultoria '), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 10 THEN numero_horas_consultoria 
-					WHEN MONTH(data_inicio_servico) = 11 THEN numero_horas_consultoria
-					WHEN MONTH(data_inicio_servico) = 12 THEN numero_horas_consultoria
+					WHEN MONTH(data_inicio_servico) = 10 AND tipo = 2 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 11 AND tipo = 2 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 12 AND tipo = 2 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 4_trimestre_horas_consultoria '),
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 1 THEN total_formacao 
-					WHEN MONTH(data_inicio_servico) = 2 THEN total_formacao
-					WHEN MONTH(data_inicio_servico) = 3 THEN total_formacao
+					WHEN MONTH(data_inicio_servico) = 1 AND tipo = 1 THEN total 
+					WHEN MONTH(data_inicio_servico) = 2 AND tipo = 1 THEN total
+					WHEN MONTH(data_inicio_servico) = 3 AND tipo = 1 THEN total
 					ELSE 0 
 					END), 2) AS 1_trimestre_formacao'), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 4 THEN total_formacao 
-					WHEN MONTH(data_inicio_servico) = 5 THEN total_formacao
-					WHEN MONTH(data_inicio_servico) = 6 THEN total_formacao
+					WHEN MONTH(data_inicio_servico) = 4 AND tipo = 1 THEN total 
+					WHEN MONTH(data_inicio_servico) = 5 AND tipo = 1 THEN total
+					WHEN MONTH(data_inicio_servico) = 6 AND tipo = 1 THEN total
 					ELSE 0 
 					END), 2) AS 2_trimestre_formacao'), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 7 THEN total_formacao 
-					WHEN MONTH(data_inicio_servico) = 8 THEN total_formacao
-					WHEN MONTH(data_inicio_servico) = 9 THEN total_formacao
+					WHEN MONTH(data_inicio_servico) = 7 AND tipo = 1 THEN total 
+					WHEN MONTH(data_inicio_servico) = 8 AND tipo = 1 THEN total
+					WHEN MONTH(data_inicio_servico) = 9 AND tipo = 1 THEN total
 					ELSE 0 
 					END), 2) AS 3_trimestre_formacao'), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 10 THEN total_formacao 
-					WHEN MONTH(data_inicio_servico) = 11 THEN total_formacao
-					WHEN MONTH(data_inicio_servico) = 12 THEN total_formacao
+					WHEN MONTH(data_inicio_servico) = 10 AND tipo = 1 THEN total 
+					WHEN MONTH(data_inicio_servico) = 11 AND tipo = 1 THEN total
+					WHEN MONTH(data_inicio_servico) = 12 AND tipo = 1 THEN total
 					ELSE 0 
 					END), 2) AS 4_trimestre_formacao'),
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 1 THEN numero_horas_formacao 
-					WHEN MONTH(data_inicio_servico) = 2 THEN numero_horas_formacao
-					WHEN MONTH(data_inicio_servico) = 3 THEN numero_horas_formacao
+					WHEN MONTH(data_inicio_servico) = 1 AND tipo = 1 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 2 AND tipo = 1 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 3 AND tipo = 1 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 1_trimestre_horas_formacao '), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 4 THEN numero_horas_formacao 
-					WHEN MONTH(data_inicio_servico) = 5 THEN numero_horas_formacao
-					WHEN MONTH(data_inicio_servico) = 6 THEN numero_horas_formacao
+					WHEN MONTH(data_inicio_servico) = 4 AND tipo = 1 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 5 AND tipo = 1 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 6 AND tipo = 1 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 2_trimestre_horas_formacao '), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 7 THEN numero_horas_formacao 
-					WHEN MONTH(data_inicio_servico) = 8 THEN numero_horas_formacao
-					WHEN MONTH(data_inicio_servico) = 9 THEN numero_horas_formacao
+					WHEN MONTH(data_inicio_servico) = 7 AND tipo = 1 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 8 AND tipo = 1 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 9 AND tipo = 1 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 3_trimestre_horas_formacao '), 
 				DB::raw( 'ROUND(SUM(CASE 
-					WHEN MONTH(data_inicio_servico) = 10 THEN numero_horas_formacao 
-					WHEN MONTH(data_inicio_servico) = 11 THEN numero_horas_formacao
-					WHEN MONTH(data_inicio_servico) = 12 THEN numero_horas_formacao
+					WHEN MONTH(data_inicio_servico) = 10 AND tipo = 1 THEN numero_horas 
+					WHEN MONTH(data_inicio_servico) = 11 AND tipo = 1 THEN numero_horas
+					WHEN MONTH(data_inicio_servico) = 12 AND tipo = 1 THEN numero_horas
 					ELSE 0 
 					END), 2) AS 4_trimestre_horas_formacao ')
 				);
