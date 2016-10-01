@@ -155,7 +155,7 @@ class OutputController extends Controller
 
 		DB::setFetchMode(PDO::FETCH_ASSOC);
 		$data = DB::table('projecto_consultores')
-		->select('programas.designacao', 'promotores.nome as promotor', 'consultores.nome', 'contrato_tipo', 'valor_hora_consultoria', 'numero_horas_consultoria', 'total_consultoria', 'valor_hora_formacao', 'numero_horas_formacao', 'total_formacao', 'percentagem_elaboracao_candidatura', 'total_elaboracao_candidatura', 'data_inicio_servico', 'data_fim_servico')
+		->select('programas.designacao', 'promotores.nome as promotor', 'consultores.nome', 'contrato_tipo', 'valor_hora', 'numero_horas', 'total', 'data_inicio_servico', 'data_fim_servico')
 		->join('projectos', 'projectos.id', '=', 'projecto_consultores.projecto_id')
 		->join('promotores', 'promotores.id', '=', 'projectos.promotor_id')
 		->join('consultores', 'projecto_consultores.consultor_id', '=', 'consultores.id')
